@@ -89,7 +89,7 @@ class MHSComparator:
                         break
         
         except Exception as e:
-            print(f"⚠️  Errore nel parsing di {matrix_file}: {e}")
+            print(f"Errore nel parsing di {matrix_file}: {e}")
         
         return info
     
@@ -103,7 +103,7 @@ class MHSComparator:
         Returns:
             Tupla (mhs_list, statistics)
         """
-        print(f"🔍 Calcolo MHS per: {os.path.basename(matrix_file)}")
+        print(f"Calcolo MHS per: {os.path.basename(matrix_file)}")
         
         calculator = MHSCalculator(matrix_file)
         
@@ -187,7 +187,7 @@ class MHSComparator:
         Args:
             matrix_files: Lista dei file .matrix da confrontare
         """
-        print("🧪 Avvio esperimento di confronto MHS")
+        print("Avvio esperimento di confronto MHS")
         print("="*60)
         
         # Calcola MHS per tutti i file
@@ -197,7 +197,7 @@ class MHSComparator:
                 self.results[matrix_file] = (mhs_list, statistics)
                 self.permutation_info[matrix_file] = self.parse_permutation_info(matrix_file)
             else:
-                print(f"⚠️  File non trovato: {matrix_file}")
+                print(f"File non trovato: {matrix_file}")
         
         # Confronta i risultati
         self.compare_all_results()
@@ -209,13 +209,13 @@ class MHSComparator:
         """
         Confronta tutti i risultati tra loro
         """
-        print("\n📊 CONFRONTO RISULTATI")
+        print("\nCONFRONTO RISULTATI")
         print("="*40)
         
         files = list(self.results.keys())
         
         if len(files) < 2:
-            print("⚠️  Servono almeno 2 file per il confronto")
+            print("Servono almeno 2 file per il confronto")
             return
         
         # Confronta tutti contro tutti
@@ -237,8 +237,8 @@ class MHSComparator:
                 # Confronta
                 comparison = self.compare_mhs_sets(mhs1, mhs2)
                 
-                print(f"\n🔍 {os.path.basename(file1)} vs {os.path.basename(file2)}")
-                print(f"   Identici: {'✅' if comparison['identical'] else '❌'}")
+                print(f"\n{os.path.basename(file1)} vs {os.path.basename(file2)}")
+                print(f"   Identici: {'SI' if comparison['identical'] else 'NO'}")
                 print(f"   MHS File1: {comparison['num_mhs1']}")
                 print(f"   MHS File2: {comparison['num_mhs2']}")
                 print(f"   Comuni: {comparison['common']}")
@@ -247,13 +247,13 @@ class MHSComparator:
                 print(f"   Similarità Jaccard: {comparison['jaccard_similarity']:.3f}")
                 
                 if not comparison['identical']:
-                    print("   ⚠️  ATTENZIONE: I risultati non sono identici!")
+                    print("ATTENZIONE: I risultati non sono identici!")
     
     def analyze_performance(self):
         """
         Analizza le prestazioni su diverse permutazioni
         """
-        print("\n⚡ ANALISI PRESTAZIONI")
+        print("\nANALISI PRESTAZIONI")
         print("="*40)
         
         # Ordina per tempo di calcolo
@@ -279,11 +279,11 @@ class MHSComparator:
         # Statistiche aggregate
         times = [stats['computation_time'] for _, (_, stats) in self.results.items()]
         if times:
-            print(f"\n📈 Statistiche tempi:")
-            print(f"   Minimo: {min(times):.3f}s")
-            print(f"   Massimo: {max(times):.3f}s")
-            print(f"   Media: {sum(times)/len(times):.3f}s")
-            print(f"   Rapporto max/min: {max(times)/min(times):.2f}x")
+            print(f"\nStatistiche tempi:")
+            print(f"Minimo: {min(times):.3f}s")
+            print(f"Massimo: {max(times):.3f}s")
+            print(f"Media: {sum(times)/len(times):.3f}s")
+            print(f"Rapporto max/min: {max(times)/min(times):.2f}x")
 
 
 def main():
@@ -304,10 +304,10 @@ def main():
     matrix_files = glob.glob(args.input_pattern)
     
     if not matrix_files:
-        print(f"❌ Nessun file trovato per il pattern: {args.input_pattern}")
+        print(f"Nessun file trovato per il pattern: {args.input_pattern}")
         return
     
-    print(f"📁 Trovati {len(matrix_files)} file da confrontare")
+    print(f"Trovati {len(matrix_files)} file da confrontare")
     
     # Esegui il confronto
     comparator = MHSComparator()

@@ -5,8 +5,6 @@ Minimal Hitting Set Calculator
 Implementazione dell'algoritmo per il calcolo dei Minimal Hitting Set (MHS)
 basato sul template fornito nelle specifiche dell'elaborato.
 
-Autore: Mattia Pavlovic
-Data: Luglio 2025
 """
 
 import os
@@ -114,7 +112,7 @@ class MHSCalculator:
             if file_size_mb > self.max_file_size_mb:
                 raise FileSizeError(f"File troppo grande: {file_size_mb:.1f}MB > {self.max_file_size_mb}MB")
             
-            print(f"📁 Caricamento file ({file_size_mb:.2f}MB): {os.path.basename(self.matrix_file)}")
+            print(f"Caricamento file ({file_size_mb:.2f}MB): {os.path.basename(self.matrix_file)}")
             
             with open(self.matrix_file, 'r') as f:
                 lines = f.readlines()
@@ -145,18 +143,18 @@ class MHSCalculator:
             # Controllo dimensioni matrice per complessità
             matrix_complexity = self.n_rows * self.n_cols
             if matrix_complexity > 10000:  # Soglia arbitraria
-                print(f"⚠️  Matrice grande ({self.n_rows}×{self.n_cols}, complessità: {matrix_complexity})")
-                print(f"   Timeout impostato: {self.timeout_seconds}s")
+                print(f"Matrice grande ({self.n_rows}×{self.n_cols}, complessità: {matrix_complexity})")
+                print(f"Timeout impostato: {self.timeout_seconds}s")
             
-            print(f"✓ Matrice caricata: {self.n_rows} righe × {self.n_cols} colonne")
+            print(f"Matrice caricata: {self.n_rows} righe × {self.n_cols} colonne")
             return True
             
         except FileSizeError as e:
-            print(f"✗ {e}")
+            print(f"{e}")
             self.statistics['interrupted_by_size'] = True
             return False
         except Exception as e:
-            print(f"✗ Errore nel caricamento: {e}")
+            print(f"Errore nel caricamento: {e}")
             return False
     
     def reduce_matrix(self):
@@ -193,9 +191,9 @@ class MHSCalculator:
                 reduced_matrix.append(reduced_row)
             self.matrix = reduced_matrix
         
-        print(f"✓ Matrice ridotta: {self.n_rows} righe × {self.n_cols_reduced} colonne")
+        print(f"Matrice ridotta: {self.n_rows} righe, {self.n_cols_reduced} colonne")
         if self.empty_columns:
-            print(f"  Colonne vuote rimosse: {[c+1 for c in self.empty_columns]}")
+            print(f"Colonne vuote rimosse: {[c+1 for c in self.empty_columns]}")
     
     def binary_to_set(self, binary_repr: str) -> Set[int]:
         """
@@ -331,7 +329,7 @@ class MHSCalculator:
                 empty_hypothesis = set()
                 if self.is_hitting_set(empty_hypothesis):
                     solutions.append(empty_hypothesis)
-                    print("✓ Insieme vuoto è un MHS")
+                    print("Insieme vuoto è un MHS")
                     return solutions
                 
                 # Livello 1: singoletti
@@ -344,7 +342,7 @@ class MHSCalculator:
                     # Controlla timeout ad ogni livello
                     timeout_handler.check_timeout()
                     
-                    print(f"📊 Livello {level}: {len(current)} ipotesi")
+                    print(f"Livello {level}: {len(current)} ipotesi")
                     self.statistics['hypotheses_by_level'][level] = len(current)
                     self.statistics['max_level_reached'] = level
                     
@@ -370,7 +368,7 @@ class MHSCalculator:
                                 # Rimuovi soluzioni non minimali
                                 solutions = [s for s in solutions if not hypothesis.issubset(s)]
                                 solutions.append(hypothesis)
-                                print(f"✓ MHS trovato (cardinalità {len(hypothesis)}): {sorted(hypothesis)}")
+                                print(f"MHS trovato (cardinalità {len(hypothesis)}): {sorted(hypothesis)}")
                                 continue
                         
                         # Genera successori se non è una soluzione
@@ -394,7 +392,7 @@ class MHSCalculator:
                 self.statistics['total_time'] = self.statistics['end_time'] - self.statistics['start_time']
                 self.statistics['solutions_found'] = len(solutions)
                 
-                print(f"✅ Calcolo completato: {len(solutions)} MHS trovati")
+                print(f"Calcolo completato: {len(solutions)} MHS trovati")
                 return solutions
                 
         except TimeoutError as e:
@@ -403,14 +401,14 @@ class MHSCalculator:
             self.statistics['end_time'] = time.time()
             self.statistics['total_time'] = self.statistics['end_time'] - self.statistics['start_time']
             
-            print(f"⏰ {e}")
-            print(f"⚠️  Calcolo interrotto - risultati parziali disponibili")
+            print(f"{e}")
+            print(f"Calcolo interrotto - risultati parziali disponibili")
             return []  # Ritorna lista vuota per timeout
         
         except Exception as e:
             self.statistics['end_time'] = time.time()
             self.statistics['total_time'] = self.statistics['end_time'] - self.statistics['start_time']
-            print(f"❌ Errore durante il calcolo: {e}")
+            print(f"Errore durante il calcolo: {e}")
             return []
     
     def convert_to_original_format(self, mhs_list: List[Set[int]]) -> List[Set[int]]:
@@ -490,37 +488,37 @@ class MHSCalculator:
                         f.write(' '.join(row) + '\n')
             
             if self.statistics.get('interrupted_by_timeout', False):
-                print(f"⚠️  Risultati parziali salvati in: {output_file}")
+                print(f"Risultati parziali salvati in: {output_file}")
             elif self.statistics.get('interrupted_by_size', False):
-                print(f"⚠️  File di stato salvato in: {output_file}")
+                print(f"File di stato salvato in: {output_file}")
             else:
-                print(f"✅ Risultati salvati in: {output_file}")
+                print(f"Risultati salvati in: {output_file}")
             
         except Exception as e:
-            print(f"✗ Errore nel salvataggio: {e}")
+            print(f"Errore nel salvataggio: {e}")
     
     def print_statistics(self):
         """
         Stampa le statistiche di esecuzione con informazioni su interruzioni
         """
         print("\n" + "="*50)
-        print("📈 STATISTICHE ESECUZIONE")
+        print("STATISTICHE ESECUZIONE")
         print("="*50)
         
         # Controlla se ci sono state interruzioni
         if self.statistics.get('interrupted_by_timeout', False):
-            print("⚠️  CALCOLO INTERROTTO PER TIMEOUT")
-            print(f"   Timeout impostato: {self.timeout_seconds}s")
+            print("CALCOLO INTERROTTO PER TIMEOUT")
+            print(f"Timeout impostato: {self.timeout_seconds}s")
         elif self.statistics.get('interrupted_by_size', False):
-            print("⚠️  FILE TROPPO GRANDE - CALCOLO SALTATO")
-            print(f"   Limite dimensione: {self.max_file_size_mb}MB")
+            print("FILE TROPPO GRANDE - CALCOLO SALTATO")
+            print(f"Limite dimensione: {self.max_file_size_mb}MB")
         
         print(f"Tempo di calcolo: {self.statistics['total_time']:.3f} secondi")
         print(f"Ipotesi generate: {self.statistics['hypotheses_generated']}")
         print(f"MHS trovati: {self.statistics['solutions_found']}")
         print(f"Livello massimo raggiunto: {self.statistics['max_level_reached']}")
-        print(f"Matrice originale: {self.n_rows} × {self.n_cols}")
-        print(f"Matrice ridotta: {self.n_rows} × {self.n_cols_reduced}")
+        print(f"Matrice originale: {self.n_rows} , {self.n_cols}")
+        print(f"Matrice ridotta: {self.n_rows} , {self.n_cols_reduced}")
         
         if self.statistics['hypotheses_by_level']:
             print("\nIpotesi per livello:")
@@ -532,7 +530,7 @@ class MHSCalculator:
     
     def run(self, output_file: str = None):
         """
-        Esegue il calcolo completo dei MHS con gestione robuста di timeout e errori
+        Esegue il calcolo completo dei MHS con gestione robusta di timeout e errori
         
         Args:
             output_file: Path del file di output (opzionale)
@@ -561,7 +559,7 @@ class MHSCalculator:
             return mhs_list
         
         except Exception as e:
-            print(f"❌ Errore critico durante l'esecuzione: {e}")
+            print(f"Errore critico durante l'esecuzione: {e}")
             if output_file:
                 # Salva file di errore
                 try:
@@ -599,14 +597,14 @@ Esempi:
     
     args = parser.parse_args()
     
-    print(f"🚀 MHS Calculator")
-    print(f"📁 File input: {args.input_file}")
-    print(f"⏰ Timeout: {args.timeout}s")
-    print(f"📊 Limite dimensione: {args.max_size}MB")
+    print(f"MHS Calculator")
+    print(f"File input: {args.input_file}")
+    print(f"Timeout: {args.timeout}s")
+    print(f"Limite dimensione: {args.max_size}MB")
     
     # Controlla esistenza file
     if not os.path.exists(args.input_file):
-        print(f"❌ File non trovato: {args.input_file}")
+        print(f"File non trovato: {args.input_file}")
         return 1
     
     # Genera nome file di output se non specificato
@@ -623,7 +621,7 @@ Esempi:
         else:
             args.output = f"{base_name}.mhs"
     
-    print(f"📄 File output: {args.output}")
+    print(f"File output: {args.output}")
     print("-" * 50)
     
     # Esegui il calcolo
@@ -636,16 +634,16 @@ Esempi:
     
     # Codice di uscita basato sul risultato
     if calculator.statistics.get('interrupted_by_timeout', False):
-        print(f"\n⚠️  Processo completato con timeout")
+        print(f"\nProcesso completato con timeout")
         return 2  # Codice speciale per timeout
     elif calculator.statistics.get('interrupted_by_size', False):
-        print(f"\n⚠️  File troppo grande - elaborazione saltata")
+        print(f"\nFile troppo grande - elaborazione saltata")
         return 3  # Codice speciale per file troppo grande
     elif result is not None and len(result) >= 0:
-        print(f"\n✅ Processo completato con successo")
+        print(f"\nProcesso completato con successo")
         return 0
     else:
-        print(f"\n❌ Processo fallito")
+        print(f"\nProcesso fallito")
         return 1
 
 

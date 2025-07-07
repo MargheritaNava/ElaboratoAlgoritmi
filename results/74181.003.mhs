@@ -1,0 +1,16 @@
+;;; Minimal Hitting Set Calculator Results
+;;; Input file: 74181.003.matrix
+;;; Generated on: 2025-07-07 10:11:35
+;;; Original matrix size: 2 × 66
+;;; Reduced matrix size: 2 × 10
+;;; Empty columns removed: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 25, 26, 27, 28, 29, 30, 31, 32, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+;;; Number of MHS found: 1
+;;; Computation time: 0.001 seconds
+;;; Hypotheses generated: 55
+;;; Max level reached: 2
+;;;
+;;; Hypotheses by level:
+;;; Level 1: 10 hypotheses
+;;; Level 2: 45 hypotheses
+;;;
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1

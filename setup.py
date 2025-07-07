@@ -10,7 +10,7 @@ def setup_project():
     """
     Configurazione finale del progetto
     """
-    print("🚀 Configurazione finale del progetto MHS Calculator")
+    print("Configurazione finale del progetto MHS Calculator")
     print("="*60)
     
     # Verifica file principali
@@ -30,10 +30,10 @@ def setup_project():
             missing_files.append(file)
     
     if missing_files:
-        print(f"❌ File mancanti: {', '.join(missing_files)}")
+        print(f"File mancanti: {', '.join(missing_files)}")
         return False
     
-    print("✅ Tutti i file principali sono presenti")
+    print("Tutti i file principali sono presenti")
     
     # Verifica directory benchmark
     benchmark_dirs = ['benchmarks1', 'benchmarks2']
@@ -46,29 +46,29 @@ def setup_project():
                 found_benchmarks.append(f"{dir_name}: {len(matrix_files)} file")
     
     if found_benchmarks:
-        print(f"✅ Benchmark disponibili:")
+        print(f"Benchmark disponibili:")
         for info in found_benchmarks:
-            print(f"   - {info}")
+            print(f"- {info}")
     else:
-        print("⚠️  Nessuna directory di benchmark trovata")
+        print("Nessuna directory di benchmark trovata")
     
     # Test rapido
-    print("\n🧪 Test rapido del sistema...")
+    print("\nTest rapido del sistema...")
     try:
         from mhs_calculator import MHSCalculator
-        print("✅ mhs_calculator importato correttamente")
+        print("mhs_calculator importato correttamente")
         
         from matrix_permutator import MatrixPermutator
-        print("✅ matrix_permutator importato correttamente")
+        print("matrix_permutator importato correttamente")
         
         from mhs_comparator import MHSComparator
-        print("✅ mhs_comparator importato correttamente")
+        print("mhs_comparator importato correttamente")
         
     except ImportError as e:
-        print(f"❌ Errore di importazione: {e}")
+        print(f"Errore di importazione: {e}")
         return False
     
-    print("\n📋 ISTRUZIONI D'USO:")
+    print("\nISTRUZIONI D'USO:")
     print("="*40)
     print("1. Test rapido:")
     print("   python main.py --test")
@@ -85,16 +85,16 @@ def setup_project():
     print("5. Esperimento completo:")
     print("   python main.py --all")
     print()
-    print("📚 Per maggiori dettagli: python main.py --help")
-    print("📖 Documentazione completa: cat README.md")
+    print("Per maggiori dettagli: python main.py --help")
+    print("Documentazione completa: cat README.md")
     
     return True
 
 if __name__ == "__main__":
     success = setup_project()
     if success:
-        print("\n🎉 PROGETTO CONFIGURATO CORRETTAMENTE!")
+        print("\nPROGETTO CONFIGURATO CORRETTAMENTE!")
         print("="*60)
     else:
-        print("\n❌ CONFIGURAZIONE FALLITA")
+        print("\nCONFIGURAZIONE FALLITA")
         sys.exit(1)

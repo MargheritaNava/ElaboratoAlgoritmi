@@ -70,11 +70,11 @@ class MatrixPermutator:
             self.n_rows = len(self.matrix)
             self.n_cols = len(self.matrix[0]) if self.matrix else 0
             
-            print(f"✓ Matrice caricata: {self.n_rows} righe × {self.n_cols} colonne")
+            print(f"Matrice caricata: {self.n_rows} righe, {self.n_cols} colonne")
             return True
             
         except Exception as e:
-            print(f"✗ Errore nel caricamento: {e}")
+            print(f"Errore nel caricamento: {e}")
             return False
     
     def permute_rows(self, row_permutation: List[int]) -> List[List[int]]:
@@ -186,10 +186,10 @@ class MatrixPermutator:
                 for row in permuted_matrix:
                     f.write(' '.join(map(str, row)) + ' -\n')
             
-            print(f"✓ Matrice permutata salvata in: {output_file}")
+            print(f"Matrice permutata salvata in: {output_file}")
             
         except Exception as e:
-            print(f"✗ Errore nel salvataggio: {e}")
+            print(f"Errore nel salvataggio: {e}")
     
     def generate_systematic_permutations(self, max_permutations: int = 10) -> List[Tuple[List[int], List[int]]]:
         """
@@ -310,9 +310,9 @@ def main():
     
     if permutator.load_matrix():
         permutator.generate_permutation_files(args.output_dir, args.num_permutations)
-        print(f"✅ Permutazioni generate in: {args.output_dir}")
+        print(f"Permutazioni generate in: {args.output_dir}")
     else:
-        print("❌ Impossibile caricare la matrice")
+        print("Impossibile caricare la matrice")
 
 
 if __name__ == "__main__":

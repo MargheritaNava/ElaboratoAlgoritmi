@@ -14,7 +14,7 @@ def test_simple_example():
     N = { {B3,B4}, {A1,A2,B4}, {A2,A5,B3,B4} }
     MHS = { {B4}, {A1,B3}, {A2,B3} }
     """
-    print("🧪 Test esempio semplice dal PDF")
+    print("Test esempio semplice dal PDF")
     print("="*50)
     
     # Crea file temporaneo con l'esempio
@@ -32,7 +32,7 @@ def test_simple_example():
     calculator = MHSCalculator('test_example.matrix')
     mhs_list = calculator.run('test_example.mhs')
     
-    print(f"\n✅ Test completato")
+    print(f"\nTest completato")
     print(f"MHS trovati: {len(mhs_list)}")
     for i, mhs in enumerate(mhs_list):
         print(f"  MHS {i+1}: {sorted(mhs)}")
@@ -49,10 +49,10 @@ def test_benchmark_file(benchmark_file: str):
     Test con un file di benchmark
     """
     if not os.path.exists(benchmark_file):
-        print(f"❌ File {benchmark_file} non trovato")
+        print(f"File {benchmark_file} non trovato")
         return
     
-    print(f"🧪 Test file: {os.path.basename(benchmark_file)}")
+    print(f"Test file: {os.path.basename(benchmark_file)}")
     print("="*50)
     
     start_time = time.time()
@@ -67,7 +67,7 @@ def test_benchmark_file(benchmark_file: str):
     
     end_time = time.time()
     
-    print(f"\n✅ Test completato in {end_time - start_time:.3f} secondi")
+    print(f"\nTest completato in {end_time - start_time:.3f} secondi")
     print(f"MHS trovati: {len(mhs_list) if mhs_list else 0}")
     
     # Mostra alcuni MHS di esempio
@@ -86,7 +86,7 @@ def main():
     """
     Esegue i test
     """
-    print("🚀 Avvio test MHS Calculator")
+    print("Avvio test MHS Calculator")
     print("="*60)
     
     # Test esempio semplice
@@ -105,11 +105,11 @@ def main():
             if os.path.exists(test_file):
                 test_benchmark_file(test_file)
             else:
-                print(f"⚠️  File {test_file} non trovato")
+                print(f"File {test_file} non trovato")
     else:
-        print(f"⚠️  Cartella {benchmark_dir} non trovata")
-    
-    print("✅ Test completati")
+        print(f"Cartella {benchmark_dir} non trovata")
+
+    print("Test completati")
 
 if __name__ == "__main__":
     main()
