@@ -1,12 +1,12 @@
 {
-  "timestamp": "2025-07-07 10:11:41",
+  "timestamp": "2025-07-07 17:25:39",
   "total_files_processed": 10,
   "temporal_performance": {
-    "mean_time": 0.24734933376312257,
-    "median_time": 0.015577077865600586,
-    "std_time": 0.5208963311477662,
-    "min_time": 0.0014171600341796875,
-    "max_time": 1.7412528991699219
+    "mean_time": 0.24634108543395997,
+    "median_time": 0.014210939407348633,
+    "std_time": 0.5187613268169795,
+    "min_time": 0.0014252662658691406,
+    "max_time": 1.7339818477630615
   },
   "spatial_performance": {
     "mean_hypotheses": 655.3,
@@ -16,7 +16,7 @@
     "max_hypotheses": 2867
   },
   "efficiency_metrics": {
-    "files_per_second": 4.04286514455569,
+    "files_per_second": 4.059412169262702,
     "average_mhs_per_file": 54.9
   }
 }
