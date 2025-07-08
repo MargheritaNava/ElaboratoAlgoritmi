@@ -48,8 +48,42 @@ Generazione di permutazioni delle matrici e confronto dei risultati per:
 
 ### 📁 Output Organizzato
 - **Cartelle output dedicate** (`benchmarks1/output/`)
+
+### 🔧 Sistema di Analisi Prestazioni Unificato (v2.1)
+- **Modulo `performance/`** con analisi modulare e riutilizzabile
+- **`BatchPerformanceAnalyzer`** per analisi critica unificata
+- **Report JSON/CSV** con metriche dettagliate
+- **Grafici di complessità** generati automaticamente
+- **Analisi teorica** con stima della complessità computazionale
+- **Monitoraggio sistema** (CPU, memoria) in tempo reale
 - **Separazione pulita** tra input e output
 - **Annotazioni complete** nei file .mhs su timeout e interruzioni
+
+## 🧪 Sistema di Analisi delle Prestazioni
+
+Il progetto include un **sistema modulare di analisi delle prestazioni** nella cartella `performance/`:
+
+### Moduli Principali
+- **`PerformanceMonitor`**: Monitoraggio real-time di CPU e memoria
+- **`PerformanceAnalyzer`**: Analisi statistiche e complessità computazionale
+- **`PerformanceReporter`**: Generazione report e grafici
+- **`BatchPerformanceAnalyzer`**: Analisi unificata per batch di file
+
+### Output Generati
+- **JSON Report** (`results/analysis/performance/batch_analysis.json`)
+- **CSV Report** (`results/analysis/performance/batch_analysis.csv`)
+- **Grafici PNG** (`results/analysis/performance/plots/`)
+  - Grafico tempo vs dimensione matrice
+  - Grafico complessità computazionale
+  - Analisi distribuzione tempi
+- **Log dettagliati** con statistiche di sistema
+
+### Funzionalità Avanzate
+- **Analisi critica** delle prestazioni con identificazione di bottleneck
+- **Stima complessità teorica** basata su modelli matematici
+- **Confronto empirico vs teorico** con grafici comparativi
+- **Identificazione outlier** e file problematici
+- **Raccomandazioni automatiche** per ottimizzazioni
 
 ## Struttura del Progetto
 

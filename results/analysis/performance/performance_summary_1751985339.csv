@@ -1,0 +1,4 @@
+File,Tempo_Esecuzione_s,Picco_Memoria_MB,CPU_Media_%,MHS_Trovati,Ipotesi_Generate,Livelli_Esplorati,Max_Livello_Size,Complessità_Temporale,Complessità_Spaziale
+c1908.051_perm_02.matrix,331.075,87.1,99.1,0,808,0,0,O(n²) - quadratic,O(n) - linear
+c1908.051_perm_00.matrix,319.569,88.7,100.0,0,808,0,0,O(n²) - quadratic,O(n) - linear
+c1908.051_perm_01.matrix,350.169,86.4,99.7,0,808,0,0,O(n²) - quadratic,O(n) - linear

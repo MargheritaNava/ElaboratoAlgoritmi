@@ -260,7 +260,7 @@ class MatrixPermutator:
         base_name = os.path.splitext(os.path.basename(self.matrix_file))[0]
         permutations = self.generate_systematic_permutations(max_permutations)
         
-        print(f"🔄 Generazione di {len(permutations)} permutazioni...")
+        print(f"Generazione di {len(permutations)} permutazioni...")
         
         for i, (row_perm, col_perm) in enumerate(permutations):
             # Genera matrice permutata

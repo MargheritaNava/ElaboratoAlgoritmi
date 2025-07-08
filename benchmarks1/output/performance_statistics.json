@@ -1,0 +1,150 @@
+{
+  "timestamp": "2025-07-08 16:35:52",
+  "total_files": 10,
+  "temporal_statistics": {
+    "mean_time": 0.29709253311157224,
+    "median_time": 0.015910625457763672,
+    "std_time": 0.6198752311134872,
+    "min_time": 0.0014619827270507812,
+    "max_time": 2.0631752014160156
+  },
+  "spatial_statistics": {
+    "mean_hypotheses": 655.3,
+    "median_hypotheses": 223.5,
+    "std_hypotheses": 843.0232559069767,
+    "min_hypotheses": 15,
+    "max_hypotheses": 2867
+  },
+  "detailed_results": [
+    {
+      "file": "74181.000.matrix",
+      "matrix_size": "3\u00d766",
+      "reduced_size": "3\u00d733",
+      "mhs_count": 271,
+      "computation_time": 2.0631752014160156,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0010528564453125
+    },
+    {
+      "file": "74181.001.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d724",
+      "mhs_count": 95,
+      "computation_time": 0.019410133361816406,
+      "hypotheses_generated": 260,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009250640869140625
+    },
+    {
+      "file": "74181.002.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d724",
+      "mhs_count": 23,
+      "computation_time": 0.010344982147216797,
+      "hypotheses_generated": 187,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009250640869140625
+    },
+    {
+      "file": "74181.003.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d710",
+      "mhs_count": 1,
+      "computation_time": 0.0021576881408691406,
+      "hypotheses_generated": 55,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009241104125976562
+    },
+    {
+      "file": "74181.004.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d715",
+      "mhs_count": 14,
+      "computation_time": 0.0022041797637939453,
+      "hypotheses_generated": 59,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009250640869140625
+    },
+    {
+      "file": "74181.005.matrix",
+      "matrix_size": "4\u00d766",
+      "reduced_size": "4\u00d726",
+      "mhs_count": 42,
+      "computation_time": 0.10924291610717773,
+      "hypotheses_generated": 1227,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0011806488037109375
+    },
+    {
+      "file": "74181.006.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d717",
+      "mhs_count": 29,
+      "computation_time": 0.012411117553710938,
+      "hypotheses_generated": 147,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009241104125976562
+    },
+    {
+      "file": "74181.007.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d75",
+      "mhs_count": 5,
+      "computation_time": 0.0014619827270507812,
+      "hypotheses_generated": 15,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009241104125976562
+    },
+    {
+      "file": "74181.008.matrix",
+      "matrix_size": "3\u00d766",
+      "reduced_size": "3\u00d719",
+      "mhs_count": 1,
+      "computation_time": 0.6703681945800781,
+      "hypotheses_generated": 1006,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0010519027709960938
+    },
+    {
+      "file": "74181.009.matrix",
+      "matrix_size": "3\u00d766",
+      "reduced_size": "3\u00d723",
+      "mhs_count": 68,
+      "computation_time": 0.08014893531799316,
+      "hypotheses_generated": 730,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0010528564453125
+    }
+  ]
+}

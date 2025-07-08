@@ -13,18 +13,33 @@ import argparse
 from typing import List, Set, Dict, Tuple
 from mhs_calculator import MHSCalculator
 import glob
+from performance.performance_analyzer import PerformanceAnalyzer
+from performance.performance_monitor import PerformanceMonitor
 
 class MHSComparator:
     """
     Classe per confrontare risultati MHS da diverse permutazioni
     """
     
-    def __init__(self):
+    def __init__(self, enable_performance_monitoring=True):
         """
         Inizializza il comparatore
+        
+        Args:
+            enable_performance_monitoring: Abilita monitoraggio prestazioni avanzato
         """
         self.results = {}  # file -> (mhs_list, statistics)
         self.permutation_info = {}  # file -> permutation_details
+        self.enable_performance_monitoring = enable_performance_monitoring
+        self.performance_data = {}  # file -> performance_stats
+        self.performance_analyzer = PerformanceAnalyzer()  # Nuovo analizzatore prestazioni
+    
+    def print_analysis_files_summary(self):
+        """
+        Stampa un riepilogo dei file di analisi disponibili
+        """
+        # Usa il performance analyzer per stampare il summary
+        self.performance_analyzer.print_analysis_files_summary()
     
     def load_mhs_from_file(self, mhs_file: str) -> List[Set[int]]:
         """
@@ -93,33 +108,50 @@ class MHSComparator:
         
         return info
     
-    def calculate_mhs_for_file(self, matrix_file: str) -> Tuple[List[Set[int]], Dict]:
+    def compute_mhs_for_matrix(self, matrix_file: str, timeout_seconds: int = 300) -> Tuple[List[Set[int]], Dict]:
         """
-        Calcola i MHS per un file e restituisce risultati e statistiche
+        Calcola i MHS per una matrice con monitoraggio prestazioni avanzato
         
         Args:
             matrix_file: Path al file .matrix
+            timeout_seconds: Timeout per il calcolo
             
         Returns:
             Tupla (mhs_list, statistics)
         """
         print(f"Calcolo MHS per: {os.path.basename(matrix_file)}")
         
-        calculator = MHSCalculator(matrix_file)
+        # Inizializza performance monitor se abilitato
+        perf_monitor = None
+        if self.enable_performance_monitoring:
+            perf_monitor = PerformanceMonitor(sample_interval=0.1)
+            perf_monitor.start_monitoring()
+        
+        calculator = MHSCalculator(matrix_file, timeout_seconds=timeout_seconds)
         
         # Calcola MHS
         start_time = time.time()
         mhs_list = calculator.run()
         end_time = time.time()
         
-        # Raccogli statistiche
+        # Ferma il monitoraggio
+        if perf_monitor:
+            perf_monitor.stop_monitoring()
+            self.performance_data[matrix_file] = perf_monitor.get_stats()
+        
+        # Raccogli statistiche estese
         statistics = {
             'computation_time': end_time - start_time,
             'num_mhs': len(mhs_list) if mhs_list else 0,
             'hypotheses_generated': calculator.statistics.get('hypotheses_generated', 0),
             'max_level_reached': calculator.statistics.get('max_level_reached', 0),
             'matrix_size': (calculator.n_rows, calculator.n_cols),
-            'reduced_size': (calculator.n_rows, calculator.n_cols_reduced)
+            'reduced_size': (calculator.n_rows, calculator.n_cols_reduced),
+            'timeout_occurred': calculator.statistics.get('interrupted_by_timeout', False),
+            'size_limit_hit': calculator.statistics.get('interrupted_by_size', False),
+            # Nuove metriche di complessità
+            'time_complexity_estimate': self._estimate_time_complexity(calculator.statistics),
+            'space_complexity_estimate': self._estimate_space_complexity(calculator.statistics)
         }
         
         return mhs_list, statistics
@@ -180,12 +212,13 @@ class MHSComparator:
             'jaccard_similarity': len(set1.intersection(set2)) / len(set1.union(set2)) if set1.union(set2) else 1.0
         }
     
-    def run_comparison_experiment(self, matrix_files: List[str]):
+    def run_comparison_experiment(self, matrix_files: List[str], timeout_seconds: int = 300):
         """
         Esegue l'esperimento di confronto su una lista di file
         
         Args:
             matrix_files: Lista dei file .matrix da confrontare
+            timeout_seconds: Timeout per il calcolo di ogni file
         """
         print("Avvio esperimento di confronto MHS")
         print("="*60)
@@ -193,7 +226,7 @@ class MHSComparator:
         # Calcola MHS per tutti i file
         for matrix_file in matrix_files:
             if os.path.exists(matrix_file):
-                mhs_list, statistics = self.calculate_mhs_for_file(matrix_file)
+                mhs_list, statistics = self.compute_mhs_for_matrix(matrix_file, timeout_seconds)
                 self.results[matrix_file] = (mhs_list, statistics)
                 self.permutation_info[matrix_file] = self.parse_permutation_info(matrix_file)
             else:
@@ -253,8 +286,11 @@ class MHSComparator:
         """
         Analizza le prestazioni su diverse permutazioni
         """
-        print("\nANALISI PRESTAZIONI")
-        print("="*40)
+        print("\n")
+        print("="*50)
+        print("ANALISI PRESTAZIONI")
+        print("="*50)
+        print("\n")
         
         # Ordina per tempo di calcolo
         sorted_results = sorted(
@@ -276,14 +312,114 @@ class MHSComparator:
                   f"{stats['hypotheses_generated']:<10} "
                   f"{stats['max_level_reached']:<8}")
         
-        # Statistiche aggregate
-        times = [stats['computation_time'] for _, (_, stats) in self.results.items()]
-        if times:
-            print(f"\nStatistiche tempi:")
-            print(f"Minimo: {min(times):.3f}s")
-            print(f"Massimo: {max(times):.3f}s")
-            print(f"Media: {sum(times)/len(times):.3f}s")
-            print(f"Rapporto max/min: {max(times)/min(times):.2f}x")
+        # Statistiche aggregate integrate nella sezione analisi avanzate
+    
+    def _estimate_time_complexity(self, calculator_stats: Dict) -> str:
+        """
+        Stima la complessità temporale basata sulle statistiche dell'algoritmo
+        
+        Args:
+            calculator_stats: Statistiche dal calculator
+            
+        Returns:
+            Stima della complessità temporale
+        """
+        hypotheses = calculator_stats.get('hypotheses_generated', 0)
+        max_level = calculator_stats.get('max_level_reached', 0)
+        
+        if hypotheses == 0:
+            return "O(1) - trivial"
+        elif hypotheses < 100:
+            return "O(n) - linear"
+        elif hypotheses < 1000:
+            return "O(n²) - quadratic"
+        elif max_level > 10:
+            return "O(2^n) - exponential"
+        else:
+            return "O(n^k) - polynomial"
+    
+    def _estimate_space_complexity(self, calculator_stats: Dict) -> str:
+        """
+        Stima la complessità spaziale basata sulle statistiche dell'algoritmo
+        
+        Args:
+            calculator_stats: Statistiche dal calculator
+            
+        Returns:
+            Stima della complessità spaziale
+        """
+        hypotheses = calculator_stats.get('hypotheses_generated', 0)
+        max_level = calculator_stats.get('max_level_reached', 0)
+        
+        if hypotheses == 0:
+            return "O(1) - constant"
+        elif max_level <= 5:
+            return "O(n) - linear"
+        elif max_level <= 10:
+            return "O(n²) - quadratic"
+        else:
+            return "O(2^n) - exponential"
+
+    def run_enhanced_comparison_experiment(self, matrix_files: List[str], timeout: int = 300):
+        """
+        Esegue un esperimento di confronto enhanced con analisi prestazioni avanzate
+        
+        Esegue il confronto standard tra permutazioni e aggiunge analisi approfondite
+        delle prestazioni, complessità computazionale e generazione di report grafici.
+        Questo è il metodo principale per il Task 3 dell'elaborato.
+        
+        Args:
+            matrix_files: Lista dei file matrice da confrontare
+            timeout: Timeout per il calcolo di ogni file (default: 300 secondi)
+            
+        Returns:
+            bool - True se l'esperimento è completato con successo, False altrimenti
+        """
+        print(f"Avvio esperimento enhanced su {len(matrix_files)} permutazioni")
+        print("="*60)
+        
+        # Traccia tempo totale esperimento
+        total_start_time = time.time()
+        
+        # Esegui l'esperimento standard
+        self.run_comparison_experiment(matrix_files, timeout)
+        success = True
+        
+        if success:
+            # Aggiungi analisi avanzate usando il nuovo PerformanceAnalyzer
+            print(f"\nAvvio analisi avanzate...")
+            
+            # Usa il nuovo analizzatore per le prestazioni
+            json_file, csv_file, reports_dir = self.performance_analyzer.analyze_comprehensive_performance(
+                self.performance_data, self.results
+            )
+            
+            # Analisi complessità
+            self.performance_analyzer.analyze_complexity(self.results, self.performance_data)
+            
+            # Genera report completo con grafici
+            report_file = self.performance_analyzer.generate_comprehensive_report(self.results, self.performance_data)
+            
+            # Store file paths per il report finale
+            if json_file and csv_file:
+                self.performance_analyzer.set_analysis_files(json_file, csv_file, os.path.join("results", "analysis", "reports"))
+            
+            # Aggiungi report grafico alla sezione report dettagliati
+            if report_file:
+                print(f"  • Report grafico: {os.path.basename(report_file)}")
+            
+        # Calcola e mostra tempo totale
+        total_time = time.time() - total_start_time
+        print(f"\nTempo di esecuzione compito 3: {total_time:.2f}s")
+        print(f"Media per permutazione: {total_time/len(matrix_files):.2f}s")
+        
+        return success
+    
+
+
+
+
+
 
 
 def main():

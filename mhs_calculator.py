@@ -315,7 +315,7 @@ class MHSCalculator:
         Returns:
             Lista dei MHS trovati
         """
-        print("🔍 Inizio calcolo MHS...")
+        print("Inizio calcolo MHS...")
         self.statistics['start_time'] = time.time()
         
         try:

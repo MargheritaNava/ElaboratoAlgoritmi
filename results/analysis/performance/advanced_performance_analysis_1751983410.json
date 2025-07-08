@@ -1,0 +1,61 @@
+{
+  "timestamp": "2025-07-08 16:03:30",
+  "total_permutations": 2,
+  "performance_metrics": {
+    "execution_times": {
+      "mean": 1.8160901069641113,
+      "std": 0.03054189682006836,
+      "min": 1.785548210144043,
+      "max": 1.8466320037841797,
+      "all_times": [
+        1.8466320037841797,
+        1.785548210144043
+      ]
+    },
+    "memory_usage": {
+      "mean_peak": 53.6640625,
+      "max_peak": 53.71875,
+      "all_peaks": [
+        53.609375,
+        53.71875
+      ]
+    },
+    "cpu_usage": {
+      "mean_avg": 96.96470588235294,
+      "max_avg": 98.97647058823529,
+      "all_averages": [
+        94.95294117647059,
+        98.97647058823529
+      ]
+    }
+  },
+  "complexity_analysis": {
+    "hypotheses_mean": 2867.0,
+    "levels_mean": 0.0,
+    "time_hypotheses_correlation": NaN
+  },
+  "file_details": {
+    "74181.000_perm_00.matrix": {
+      "execution_time": 1.8466320037841797,
+      "memory_peak": 53.609375,
+      "cpu_average": 94.95294117647059,
+      "mhs_count": 271,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_01.matrix": {
+      "execution_time": 1.785548210144043,
+      "memory_peak": 53.71875,
+      "cpu_average": 98.97647058823529,
+      "mhs_count": 271,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    }
+  }
+}

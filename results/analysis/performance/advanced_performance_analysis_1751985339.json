@@ -1,0 +1,75 @@
+{
+  "timestamp": "2025-07-08 16:35:39",
+  "total_permutations": 3,
+  "performance_metrics": {
+    "execution_times": {
+      "mean": 333.604208946228,
+      "std": 12.619431097193068,
+      "min": 319.5694589614868,
+      "max": 350.16854190826416,
+      "all_times": [
+        331.0746259689331,
+        319.5694589614868,
+        350.16854190826416
+      ]
+    },
+    "memory_usage": {
+      "mean_peak": 87.39453125,
+      "max_peak": 88.72265625,
+      "all_peaks": [
+        87.09765625,
+        88.72265625,
+        86.36328125
+      ]
+    },
+    "cpu_usage": {
+      "mean_avg": 99.58895103034052,
+      "max_avg": 99.95432266848195,
+      "all_averages": [
+        99.0892561983471,
+        99.95432266848195,
+        99.72327422419252
+      ]
+    }
+  },
+  "complexity_analysis": {
+    "hypotheses_mean": 808.0,
+    "levels_mean": 0.0,
+    "time_hypotheses_correlation": NaN
+  },
+  "file_details": {
+    "c1908.051_perm_02.matrix": {
+      "execution_time": 331.0746259689331,
+      "memory_peak": 87.09765625,
+      "cpu_average": 99.0892561983471,
+      "mhs_count": 0,
+      "hypotheses_generated": 808,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n²) - quadratic",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "c1908.051_perm_00.matrix": {
+      "execution_time": 319.5694589614868,
+      "memory_peak": 88.72265625,
+      "cpu_average": 99.95432266848195,
+      "mhs_count": 0,
+      "hypotheses_generated": 808,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n²) - quadratic",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "c1908.051_perm_01.matrix": {
+      "execution_time": 350.16854190826416,
+      "memory_peak": 86.36328125,
+      "cpu_average": 99.72327422419252,
+      "mhs_count": 0,
+      "hypotheses_generated": 808,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n²) - quadratic",
+      "space_complexity_estimate": "O(n) - linear"
+    }
+  }
+}
