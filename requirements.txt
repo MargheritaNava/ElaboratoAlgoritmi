@@ -1,0 +1,10 @@
+# Dipendenze per l'Elaborato MHS 2023-2024
+# Data analysis and plotting
+numpy>=1.21.0
+matplotlib>=3.5.0
+
+# System monitoring
+psutil>=5.8.0
+
+# Additional utilities
+tqdm>=4.64.0

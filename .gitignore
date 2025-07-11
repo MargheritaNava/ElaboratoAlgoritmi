@@ -1,0 +1,30 @@
+# File di sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# File temporanei
+*.tmp
+*.temp
+*.log
+
+# Ambiente virtuale Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# File di output (opzionale - se vuoi escludere i risultati .mhs)
+# benchmarks1/output/
+# benchmarks2/output/
+
+# File IDE
+.vscode/settings.json
+.idea/
+
+# File grandi (se ci sono)
+*.zip
+*.tar.gz

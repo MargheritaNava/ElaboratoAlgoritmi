@@ -1,0 +1,11 @@
+File,Tempo_Esecuzione_s,Picco_Memoria_MB,CPU_Media_%,MHS_Trovati,Ipotesi_Generate,Livelli_Esplorati,Max_Livello_Size,Complessità_Temporale,Complessità_Spaziale
+74181.000_perm_00.matrix,1.472,61.3,90.9,271,2867,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_01.matrix,1.535,61.5,89.2,271,2867,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_02.matrix,1.439,61.6,89.6,271,2866,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_03.matrix,1.440,61.6,85.9,271,2775,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_04.matrix,1.556,61.7,91.8,271,2867,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_05.matrix,1.530,61.8,92.0,271,2857,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_06.matrix,1.613,61.8,88.9,271,2802,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_07.matrix,1.496,61.9,88.5,271,2710,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_08.matrix,1.610,61.9,89.7,271,2816,0,0,O(n^k) - polynomial,O(n) - linear
+74181.000_perm_09.matrix,1.504,62.0,92.9,271,2780,0,0,O(n^k) - polynomial,O(n) - linear

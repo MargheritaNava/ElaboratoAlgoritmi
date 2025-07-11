@@ -1,0 +1,173 @@
+{
+  "timestamp": "2025-07-09 14:09:14",
+  "total_permutations": 10,
+  "performance_metrics": {
+    "execution_times": {
+      "mean": 1.4879986763000488,
+      "std": 0.08709406552950934,
+      "min": 1.315917730331421,
+      "max": 1.598475456237793,
+      "all_times": [
+        1.4396705627441406,
+        1.534219741821289,
+        1.598475456237793,
+        1.4006597995758057,
+        1.556530475616455,
+        1.4270927906036377,
+        1.4694795608520508,
+        1.315917730331421,
+        1.5750863552093506,
+        1.562854290008545
+      ]
+    },
+    "memory_usage": {
+      "mean_peak": 61.435546875,
+      "max_peak": 61.69140625,
+      "all_peaks": [
+        61.1328125,
+        61.2421875,
+        61.3046875,
+        61.3671875,
+        61.43359375,
+        61.49609375,
+        61.49609375,
+        61.5625,
+        61.62890625,
+        61.69140625
+      ]
+    },
+    "cpu_usage": {
+      "mean_avg": 90.26890018315018,
+      "max_avg": 94.61333333333333,
+      "all_averages": [
+        90.91428571428571,
+        88.02,
+        87.4375,
+        89.58571428571429,
+        94.61333333333333,
+        89.43571428571428,
+        90.82142857142857,
+        91.9076923076923,
+        90.45333333333333,
+        89.5
+      ]
+    }
+  },
+  "complexity_analysis": {
+    "hypotheses_mean": 2818.7,
+    "levels_mean": 0.0,
+    "time_hypotheses_correlation": -0.10569132895319786
+  },
+  "file_details": {
+    "74181.000_perm_00.matrix": {
+      "execution_time": 1.4396705627441406,
+      "memory_peak": 61.1328125,
+      "cpu_average": 90.91428571428571,
+      "mhs_count": 271,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_01.matrix": {
+      "execution_time": 1.534219741821289,
+      "memory_peak": 61.2421875,
+      "cpu_average": 88.02,
+      "mhs_count": 271,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_02.matrix": {
+      "execution_time": 1.598475456237793,
+      "memory_peak": 61.3046875,
+      "cpu_average": 87.4375,
+      "mhs_count": 271,
+      "hypotheses_generated": 2924,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_03.matrix": {
+      "execution_time": 1.4006597995758057,
+      "memory_peak": 61.3671875,
+      "cpu_average": 89.58571428571429,
+      "mhs_count": 271,
+      "hypotheses_generated": 2909,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_04.matrix": {
+      "execution_time": 1.556530475616455,
+      "memory_peak": 61.43359375,
+      "cpu_average": 94.61333333333333,
+      "mhs_count": 271,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_05.matrix": {
+      "execution_time": 1.4270927906036377,
+      "memory_peak": 61.49609375,
+      "cpu_average": 89.43571428571428,
+      "mhs_count": 271,
+      "hypotheses_generated": 2857,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_06.matrix": {
+      "execution_time": 1.4694795608520508,
+      "memory_peak": 61.49609375,
+      "cpu_average": 90.82142857142857,
+      "mhs_count": 271,
+      "hypotheses_generated": 2618,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_07.matrix": {
+      "execution_time": 1.315917730331421,
+      "memory_peak": 61.5625,
+      "cpu_average": 91.9076923076923,
+      "mhs_count": 271,
+      "hypotheses_generated": 2829,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_08.matrix": {
+      "execution_time": 1.5750863552093506,
+      "memory_peak": 61.62890625,
+      "cpu_average": 90.45333333333333,
+      "mhs_count": 271,
+      "hypotheses_generated": 2575,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    },
+    "74181.000_perm_09.matrix": {
+      "execution_time": 1.562854290008545,
+      "memory_peak": 61.69140625,
+      "cpu_average": 89.5,
+      "mhs_count": 271,
+      "hypotheses_generated": 2874,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "time_complexity_estimate": "O(n^k) - polynomial",
+      "space_complexity_estimate": "O(n) - linear"
+    }
+  }
+}

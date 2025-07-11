@@ -1,0 +1,59 @@
+{
+  "timestamp": "2025-07-08 16:03:08",
+  "total_files": 3,
+  "temporal_statistics": {
+    "mean_time": 0.5971490542093912,
+    "median_time": 0.017508983612060547,
+    "std_time": 0.8262395397613899,
+    "min_time": 0.008322000503540039,
+    "max_time": 1.7656161785125732
+  },
+  "spatial_statistics": {
+    "mean_hypotheses": 1104.6666666666667,
+    "median_hypotheses": 260.0,
+    "std_hypotheses": 1246.5141617950258,
+    "min_hypotheses": 187,
+    "max_hypotheses": 2867
+  },
+  "detailed_results": [
+    {
+      "file": "74181.000.matrix",
+      "matrix_size": "3\u00d766",
+      "reduced_size": "3\u00d733",
+      "mhs_count": 271,
+      "computation_time": 1.7656161785125732,
+      "hypotheses_generated": 2867,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0010528564453125
+    },
+    {
+      "file": "74181.001.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d724",
+      "mhs_count": 95,
+      "computation_time": 0.017508983612060547,
+      "hypotheses_generated": 260,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009250640869140625
+    },
+    {
+      "file": "74181.002.matrix",
+      "matrix_size": "2\u00d766",
+      "reduced_size": "2\u00d724",
+      "mhs_count": 23,
+      "computation_time": 0.008322000503540039,
+      "hypotheses_generated": 187,
+      "levels_explored": 0,
+      "max_level_size": 0,
+      "timeout": false,
+      "size_limit": false,
+      "file_size_mb": 0.0009250640869140625
+    }
+  ]
+}
