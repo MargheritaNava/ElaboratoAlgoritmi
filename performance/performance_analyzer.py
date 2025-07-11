@@ -61,8 +61,8 @@ class PerformanceAnalyzer:
             complexity_data[file] = {
                 'mhs_count': len(mhs_list) if mhs_list else 0,
                 'hypotheses_generated': stats.get('hypotheses_generated', 0),
-                'levels_explored': len(stats.get('levels_generated', [])),
-                'max_level_size': max(stats.get('levels_generated', [0])) if stats.get('levels_generated') else 0,
+                'levels_explored': len(stats.get('max_level_reached', [])),
+                'max_level_size': max(stats.get('hypotheses_by_level').values()) if stats.get('max_level_reached') else 0,
                 'time_complexity_estimate': stats.get('time_complexity_estimate', 'N/A'),
                 'space_complexity_estimate': stats.get('space_complexity_estimate', 'N/A')
             }
@@ -267,8 +267,8 @@ class PerformanceAnalyzer:
                 'file': os.path.basename(file),
                 'mhs_count': len(mhs_list) if mhs_list else 0,
                 'hypotheses_generated': stats.get('hypotheses_generated', 0),
-                'levels_explored': len(stats.get('levels_generated', [])),
-                'max_level_size': max(stats.get('levels_generated', [0])) if stats.get('levels_generated') else 0,
+                'levels_explored': len(stats.get('max_level_reached', [])),
+                'max_level_size': max(stats.get('hypotheses_by_level').values()) if stats.get('max_level_reached') else 0,
                 'execution_time': performance_data.get(file, {}).get('execution_time', 0)
             }
             complexity_data.append(data)

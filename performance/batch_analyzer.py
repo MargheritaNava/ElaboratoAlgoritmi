@@ -212,6 +212,47 @@ class BatchPerformanceAnalyzer:
                 matrix_sizes.append(0)
         return matrix_sizes
     
+    def _extract_rows_and_cols(self, results: List[Dict]) -> Tuple[List[int], List[int]]:
+        """Estrae le righe e le colonne dalle dimensioni delle matrici"""
+        rows, cols = [], []
+        for r in results:
+            size_str = r['matrix_size']
+            if '×' in size_str:
+                row, col = map(int, size_str.split('×'))
+                rows.append(row)
+                cols.append(col)
+            else:
+                rows.append(0)
+                cols.append(0)
+        return rows, cols
+
+    def _extract_matrix_sizes_optimized(self, results: List[Dict]) -> List[int]:
+        """Estrae le dimensioni delle matrici ottimizzate dai risultati"""
+        matrix_sizes = []
+        for r in results:
+            size_str = r['reduced_size']
+            if '×' in size_str:
+                rows, cols = map(int, size_str.split('×'))
+                matrix_sizes.append(rows * cols)
+            else:
+                matrix_sizes.append(0)
+        return matrix_sizes
+    
+    def _extract_rows_and_cols_optimized(self, results: List[Dict]) -> Tuple[List[int], List[int]]:
+        """Estrae le righe e le colonne dalle dimensioni delle matrici ottimizzate"""
+        rows, cols = [], []
+        for r in results:
+            size_str = r['reduced_size']
+            if '×' in size_str:
+                row, col = map(int, size_str.split('×'))
+                rows.append(row)
+                cols.append(col)
+            else:
+                rows.append(0)
+                cols.append(0)
+        return rows, cols
+    
+    
     def _generate_analysis_plots(self, results: List[Dict]) -> str:
         """Genera grafici di analisi"""
         print(f"\nGENERAZIONE GRAFICI ANALITICI")
@@ -221,34 +262,122 @@ class BatchPerformanceAnalyzer:
         mhs_counts = [r['mhs_count'] for r in results]
         hypotheses = [r.get('hypotheses_generated', 0) for r in results]
         matrix_sizes = self._extract_matrix_sizes(results)
-        
+        rows, cols = self._extract_rows_and_cols(results)
+        matrix_sizes_opt = self._extract_matrix_sizes_optimized(results)
+        rows_opt, cols_opt = self._extract_rows_and_cols_optimized(results)
+        ones, ones_opt = [], []
+        file_sizes = [r.get('file_size_mb', 0) for r in results]
+
         try:
+
+            # Grafici della distribuzione dei tempi vs caratteristiche delle matrici NON ottimizzate
             fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
-            
-            # Grafico 1: Distribuzione tempi
-            ax1.hist(times, bins=20, alpha=0.7, color='blue', edgecolor='black')
-            ax1.axvline(np.mean(times), color='red', linestyle='--', label=f'Media: {np.mean(times):.3f}s')
-            ax1.axvline(np.median(times), color='green', linestyle='--', label=f'Mediana: {np.median(times):.3f}s')
-            ax1.set_xlabel('Tempo di calcolo (s)')
-            ax1.set_ylabel('Frequenza')
-            ax1.set_title('Distribuzione Tempi di Calcolo')
-            ax1.legend()
-            ax1.grid(True, alpha=0.3)
-            
-            # Grafico 2: Scatter dimensione vs tempo
-            if matrix_sizes:
-                ax2.scatter(matrix_sizes, times, alpha=0.6, color='orange')
-                ax2.set_xlabel('Dimensione matrice (righe × colonne)')
+
+            # Tempo vs numero totale elementi
+            if matrix_sizes and times:
+                ax1.plot(matrix_sizes, times, marker='o', color='seagreen', alpha=0.7)
+                ax1.set_xlabel('Numero totale elementi (righe x colonne)')
+                ax1.set_ylabel('Tempo di calcolo (s)')
+                ax1.set_title('Tempo vs Numero totale elementi')
+                ax1.grid(True, alpha=0.3)
+
+            # Tempo vs numero di 1 nella matrice
+            if ones and times:
+                ax2.plot(ones, times, marker='o', color='purple', alpha=0.7)
+                ax2.set_xlabel('Numero di 1 nella matrice')
                 ax2.set_ylabel('Tempo di calcolo (s)')
-                ax2.set_title('Relazione Dimensione-Tempo')
+                ax2.set_title('Tempo vs Numero di 1')
                 ax2.grid(True, alpha=0.3)
-            
-            # Grafico 3: MHS trovati vs tempo
-            ax3.scatter(mhs_counts, times, alpha=0.6, color='green')
-            ax3.set_xlabel('Numero MHS trovati')
-            ax3.set_ylabel('Tempo di calcolo (s)')
-            ax3.set_title('Relazione MHS-Tempo')
-            ax3.grid(True, alpha=0.3)
+
+            # Tempo vs colonne
+            if cols and times:
+                ax3.plot(cols, times, marker='o', color='royalblue', alpha=0.7)
+                ax3.set_xlabel('Numero colonne')
+                ax3.set_ylabel('Tempo di calcolo (s)')
+                ax3.set_title('Tempo vs Numero colonne')
+                ax3.grid(True, alpha=0.3)
+
+            # Tempo vs righe
+            if rows and times:
+                ax4.plot(rows, times, marker='o', color='darkorange', alpha=0.7)
+                ax4.set_xlabel('Numero righe')
+                ax4.set_ylabel('Tempo di calcolo (s)')
+                ax4.set_title('Tempo vs Numero righe')
+                ax4.grid(True, alpha=0.3)
+
+            plt.tight_layout()
+            plot_path = os.path.join(self.output_dir, 'time_analysis.png')
+            plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+            print(f"Grafici della distribuzione dei tempi in base alle caratteristiche delle matrichi salvati in: {plot_path}")
+            plt.close(fig)
+
+            # Grafici della distribuzione dei tempi vs caratteristiche delle matrici ottimizzate
+            fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+
+            # Tempo vs numero totale elementi
+            if matrix_sizes_opt and times:
+                ax1.plot(matrix_sizes_opt, times, marker='o', color='seagreen', alpha=0.7)
+                ax1.set_xlabel('Numero totale elementi (righe x colonne)')
+                ax1.set_ylabel('Tempo di calcolo (s)')
+                ax1.set_title('Tempo vs Numero totale elementi')
+                ax1.grid(True, alpha=0.3)
+
+            # Tempo vs numero di 1 nella matrice
+            if ones_opt and times:
+                ax2.plot(ones_opt, times, marker='o', color='purple', alpha=0.7)
+                ax2.set_xlabel('Numero di 1 nella matrice')
+                ax2.set_ylabel('Tempo di calcolo (s)')
+                ax2.set_title('Tempo vs Numero di 1')
+                ax2.grid(True, alpha=0.3)
+
+            # Tempo vs colonne
+            if cols_opt and times:
+                ax3.plot(cols_opt, times, marker='o', color='royalblue', alpha=0.7)
+                ax3.set_xlabel('Numero colonne')
+                ax3.set_ylabel('Tempo di calcolo (s)')
+                ax3.set_title('Tempo vs Numero colonne')
+                ax3.grid(True, alpha=0.3)
+
+            # Tempo vs righe
+            if rows_opt and times:
+                ax4.plot(rows_opt, times, marker='o', color='darkorange', alpha=0.7)
+                ax4.set_xlabel('Numero righe')
+                ax4.set_ylabel('Tempo di calcolo (s)')
+                ax4.set_title('Tempo vs Numero righe')
+                ax4.grid(True, alpha=0.3)
+
+            plt.tight_layout()
+            plot_path = os.path.join(self.output_dir, 'time_analysis_opt.png')
+            plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+            print(f"Grafici della distribuzione dei tempi in base alle caratteristiche delle matrichi ottimizzate salvati in: {plot_path}")
+            plt.close(fig)
+
+            # Grafici relativi al numero di MHS trovati
+            fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12))
+
+            # Grafico: Relazione MHS trovati vs dimensione matrice
+            if matrix_sizes and mhs_counts:
+                ax1.scatter(matrix_sizes, mhs_counts, alpha=0.7, color='teal')
+                ax1.set_xlabel('Dimensione matrice (righe × colonne)')
+                ax1.set_ylabel('Numero MHS trovati')
+                ax1.set_title('Relazione MHS trovati - Dimensione matrice')
+                ax1.grid(True, alpha=0.3)
+
+            # Grafico: MHS trovati vs tempo
+            if mhs_counts and times:
+                ax2.scatter(mhs_counts, times, alpha=0.6, color='green')
+                ax2.set_xlabel('Numero MHS trovati')
+                ax2.set_ylabel('Tempo di calcolo (s)')
+                ax2.set_title('Relazione MHS-Tempo')
+                ax2.grid(True, alpha=0.3)
+
+            plt.tight_layout()
+            combined_path = os.path.join(self.output_dir, 'mhs_stats.png')
+            plt.savefig(combined_path, dpi=300, bbox_inches='tight')
+            print(f"Grafici MHS/dimensione e MHS/tempo salvati in: {combined_path}")
+            plt.close(fig)
+
+
             
             # Grafico 4: Distribuzione ipotesi generate
             ax4.hist(hypotheses, bins=20, alpha=0.7, color='purple', edgecolor='black')
@@ -258,15 +387,30 @@ class BatchPerformanceAnalyzer:
             ax4.set_title('Distribuzione Complessità Computazionale')
             ax4.legend()
             ax4.grid(True, alpha=0.3)
+
+            # Grafico 1: Distribuzione tempi
+            ax1.hist(times, bins=20, alpha=0.7, color='blue', edgecolor='black')
+            ax1.axvline(np.mean(times), color='red', linestyle='--', label=f'Media: {np.mean(times):.3f}s')
+            ax1.axvline(np.median(times), color='green', linestyle='--', label=f'Mediana: {np.median(times):.3f}s')
+            ax1.set_xlabel('Tempo di calcolo (s)')
+            ax1.set_ylabel('Frequenza')
+            ax1.set_title('Distribuzione Tempi di Calcolo')
+            ax1.legend()
+            ax1.grid(True, alpha=0.3)
+
+
+            # # Grafico: Dimensione file vs Tempo di esecuzione
+            # if file_sizes and times:
+            #     ax2.scatter(file_sizes, times, alpha=0.7, color='brown')
+            #     ax2.set_xlabel('Dimensione file (MB)')
+            #     ax2.set_ylabel('Tempo di calcolo (s)')
+            #     ax2.set_title('Relazione Dimensione File - Tempo di Esecuzione')
+            #     ax2.grid(True, alpha=0.3)
+
+
             
-            plt.tight_layout()
-            
-            # Salva grafici
-            plot_path = os.path.join(self.output_dir, 'performance_analysis.png')
-            plt.savefig(plot_path, dpi=300, bbox_inches='tight')
-            print(f"Grafici salvati in: {plot_path}")
-            plt.close()
-            
+
+
             return plot_path
             
         except Exception as e:
@@ -407,7 +551,7 @@ class BatchPerformanceAnalyzer:
             with open(csv_path, 'w', newline='') as csvfile:
                 fieldnames = ['file', 'matrix_size', 'reduced_size', 'mhs_count', 
                             'computation_time', 'hypotheses_generated', 'levels_explored',
-                            'max_level_size', 'timeout', 'size_limit', 'file_size_mb']
+                            'max_level_size', 'timeout', 'size_limit', 'file_size_mb','ones_count']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
                 

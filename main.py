@@ -126,11 +126,12 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
                 'mhs_count': len(mhs_list) if mhs_list else 0,
                 'computation_time': end_time - start_time,
                 'hypotheses_generated': calculator.statistics.get('hypotheses_generated', 0),
-                'levels_explored': len(calculator.statistics.get('levels_generated', [])),
-                'max_level_size': max(calculator.statistics.get('levels_generated', [0])) if calculator.statistics.get('levels_generated') else 0,
+                'levels_explored': calculator.statistics.get('max_level_reached', 0),
+                'max_level_size': max(calculator.statistics.get('hypotheses_by_level').values()) if calculator.statistics.get('max_level_reached') else 0,
                 'timeout': calculator.statistics.get('interrupted_by_timeout', False),
                 'size_limit': calculator.statistics.get('interrupted_by_size', False),
-                'file_size_mb': os.path.getsize(matrix_file) / (1024*1024)
+                'file_size_mb': os.path.getsize(matrix_file) / (1024*1024),
+                'ones_count': np.count_nonzero(calculator.matrix)  # Conteggio degli elementi non nulli della matrice
             }
             results_summary.append(result)
             
@@ -195,7 +196,7 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
     print(f"\nCompito 2 completato con valutazione critica!")
     print(f"   • Risultati MHS: {output_dir}")
     if plots_dir:
-        print(f"   • Analisi prestazioni: {plots_dir}")
+        print(f"   • Analisi prestazioni: {plots_dir}") #! Cartella con i grafici - verificare che grafici plottare
     if json_file:
         print(f"   • Report JSON: {json_file}")
     if csv_file:
