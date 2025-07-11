@@ -11,6 +11,7 @@
 *.log
 
 # Ambiente virtuale Python
+.plot_env/
 .venv/
 venv/
 __pycache__/
@@ -20,6 +21,7 @@ __pycache__/
 # File di output (opzionale - se vuoi escludere i risultati .mhs)
 # benchmarks1/output/
 # benchmarks2/output/
+.results/
 
 # File IDE
 .vscode/settings.json
