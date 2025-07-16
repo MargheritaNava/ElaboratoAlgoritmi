@@ -105,7 +105,7 @@ def compito_1_calcolo_mhs(input_file: str, output_file: str = None, timeout: int
     
     return True
 
-def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeout: int = 300, max_size: int = 50, max_files: int = 10, logger=None):
+def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeout: int = 300, max_size: int = 50, max_files: int = 50, logger=None):
     """
     Compito 2: Sperimentazione sui benchmark con timeout e limiti
     """
@@ -396,7 +396,7 @@ def run_complete_experiment(timeout: int = 300, max_size: int = 50):
         
         # Compito 2: Sperimentazione
         logger.section("COMPITO 2: SPERIMENTAZIONE")
-        compito_2_sperimentazione(benchmark_dir, timeout=timeout, max_size=max_size, max_files=10, logger=logger)
+        compito_2_sperimentazione(benchmark_dir, timeout=timeout, max_size=max_size, max_files=50, logger=logger)
         
         # Compito 1 e 3: Su un file specifico
         matrix_files = glob.glob(os.path.join(benchmark_dir, "*.matrix"))
@@ -458,7 +458,7 @@ Esempi d'uso:
                        help='Timeout in secondi per file (default: 300)')
     parser.add_argument('--max-size', type=int, default=50,
                        help='Dimensione massima file in MB (default: 50)')
-    parser.add_argument('--max-files', type=int, default=10,
+    parser.add_argument('--max-files', type=int, default=50,
                        help='Numero massimo di file da elaborare nei benchmark (default: 10)')
     
     args = parser.parse_args()
