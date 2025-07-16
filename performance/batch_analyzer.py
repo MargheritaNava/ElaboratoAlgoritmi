@@ -212,6 +212,46 @@ class BatchPerformanceAnalyzer:
                 matrix_sizes.append(0)
         return matrix_sizes
     
+    def _extract_rows_and_cols(self, results: List[Dict]) -> Tuple[List[int], List[int]]:
+        """Estrae le righe e le colonne dalle dimensioni delle matrici"""
+        rows, cols = [], []
+        for r in results:
+            size_str = r['matrix_size']
+            if '×' in size_str:
+                row, col = map(int, size_str.split('×'))
+                rows.append(row)
+                cols.append(col)
+            else:
+                rows.append(0)
+                cols.append(0)
+        return rows, cols
+
+    def _extract_matrix_sizes_optimized(self, results: List[Dict]) -> List[int]:
+        """Estrae le dimensioni delle matrici ottimizzate dai risultati"""
+        matrix_sizes = []
+        for r in results:
+            size_str = r['reduced_size']
+            if '×' in size_str:
+                rows, cols = map(int, size_str.split('×'))
+                matrix_sizes.append(rows * cols)
+            else:
+                matrix_sizes.append(0)
+        return matrix_sizes
+    
+    def _extract_rows_and_cols_optimized(self, results: List[Dict]) -> Tuple[List[int], List[int]]:
+        """Estrae le righe e le colonne dalle dimensioni delle matrici ottimizzate"""
+        rows, cols = [], []
+        for r in results:
+            size_str = r['reduced_size']
+            if '×' in size_str:
+                row, col = map(int, size_str.split('×'))
+                rows.append(row)
+                cols.append(col)
+            else:
+                rows.append(0)
+                cols.append(0)
+        return rows, cols
+    
     def _generate_analysis_plots(self, results: List[Dict]) -> str:
         """Genera grafici di analisi"""
         print(f"\nGENERAZIONE GRAFICI ANALITICI")
@@ -221,6 +261,11 @@ class BatchPerformanceAnalyzer:
         mhs_counts = [r['mhs_count'] for r in results]
         hypotheses = [r.get('hypotheses_generated', 0) for r in results]
         matrix_sizes = self._extract_matrix_sizes(results)
+        rows, cols = self._extract_rows_and_cols(results)
+        matrix_sizes_opt = self._extract_matrix_sizes_optimized(results)
+        rows_opt, cols_opt = self._extract_rows_and_cols_optimized(results)
+        ones, ones_opt = [], []
+        file_sizes = [r.get('file_size_mb', 0) for r in results]
         
         try:
             fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
@@ -407,7 +452,7 @@ class BatchPerformanceAnalyzer:
             with open(csv_path, 'w', newline='') as csvfile:
                 fieldnames = ['file', 'matrix_size', 'reduced_size', 'mhs_count', 
                             'computation_time', 'hypotheses_generated', 'levels_explored',
-                            'max_level_size', 'timeout', 'size_limit', 'file_size_mb']
+                            'max_level_size', 'timeout', 'size_limit', 'file_size_mb','ones_count']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
                 

@@ -11,6 +11,7 @@
 *.log
 
 # Ambiente virtuale Python
+.plot_env/
 .venv/
 venv/
 __pycache__/
