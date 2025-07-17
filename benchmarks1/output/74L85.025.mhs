@@ -1,0 +1,33 @@
+;;; Measurements info:
+;;; ------------------------
+;;; |  param_name  |  uof  |
+;;; ------------------------
+;;; | elapsed_time |   s   |
+;;; |  cpu_usage   |   %   |
+;;; |  mem_usage   |   Mb  |
+;;; ------------------------
+;;; Measurements data
+;;; {'calculate_mhs': {'elapsed_time': {'min': 60.58427929878235, 'mean': 60.58427929878235, 'max': 60.58427929878235, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.00692629236295671, 'max': 0.01, 'count': 8747}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
+;;; GlobalNumCellsEq1: 39
+;;; MaxNumCellsEq1PerRow: 12
+;;; MeanNumCellsEq1PerRow: 6.5
+;;; Input matrix shape (N,M): (6,33)
+;;; Total MHS found: 0
+;;; Cardinality (min,max): (0,0)
+;;; Number of generated hypotesis per level: [(1,23),(2,253),(3,1771),(4,8838),(5,0),(6,0),(7,0)]
+;;; Interrupted: True
+;;; |M'|: 23
+;;; M'  2(z2) 4(z4) 5(z5) 7(z7) 9(z9) 10(z10) 12(z12) 13(z13) 15(z15) 17(z17) 18(z18) 19(z19) 20(z20) 21(z21) 22(z22) 23(z23) 24(z24) 25(z25) 27(z27) 30(z30) 31(z31) 32(z32) 33(z33)
+;;; Map 1(o1) 2(z2) 3(o2) 4(z4) 5(z5) 6(o3) 7(z7) 8(o4) 9(z9) 10(z10) 11(o5) 12(z12) 13(z13) 14(o6) 15(z15) 16(o7) 17(z17) 18(z18) 19(z19) 20(z20) 21(z21) 22(z22) 23(z23) 24(z24) 25(z25) 26(o8) 27(z27) 28(o9) 29(o10) 30(z30) 31(z31) 32(z32) 33(z33)
+0 1 1 0 0 0 1 1 0 0 1 1 0 1 0 1 0 1 1 1 0 0 1 -
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 -
+0 1 0 0 1 1 0 0 0 1 0 0 0 0 1 0 1 0 0 0 0 1 0 -
+0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 -
+0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0 0 -
+1 0 0 0 0 1 0 0 0 1 0 0 0 1 0 1 0 1 1 1 0 0 1 -
+;;; WARNING: Computation interrupted by timeout (60s)
+;;; Results are INCOMPLETE - only partial solutions found
+;;; Generated on: 2025-07-17 00:26:35
+;;; Input file: 74L85.025.matrix
+;;; Computation time: 60.584279 seconds
+;;; Hypotheses generated: 8747

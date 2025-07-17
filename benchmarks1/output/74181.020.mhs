@@ -7,14 +7,14 @@
 ;;; |  mem_usage   |   Mb  |
 ;;; ------------------------
 ;;; Measurements data
-;;; {'calculate_mhs': {'elapsed_time': {'min': 300.70340394973755, 'mean': 300.70340394973755, 'max': 300.70340394973755, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.028977874525367403, 'max': 0.01, 'count': 10377}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
+;;; {'calculate_mhs': {'elapsed_time': {'min': 61.320963621139526, 'mean': 61.320963621139526, 'max': 61.320963621139526, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.012934183425678028, 'max': 0.01, 'count': 4741}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
 ;;; GlobalNumCellsEq1: 171
 ;;; MaxNumCellsEq1PerRow: 20
 ;;; MeanNumCellsEq1PerRow: 14.2
 ;;; Input matrix shape (N,M): (12,66)
 ;;; Total MHS found: 0
 ;;; Cardinality (min,max): (0,0)
-;;; Number of generated hypotesis per level: [(1,38),(2,703),(3,8436),(4,73572),(5,0),(6,0),(7,0)]
+;;; Number of generated hypotesis per level: [(1,38),(2,703),(3,8436),(4,0),(5,0),(6,0)]
 ;;; Interrupted: True
 ;;; |M'|: 38
 ;;; M'  5(z5) 6(z6) 7(z7) 8(z8) 11(z11) 12(z12) 16(z16) 19(z19) 24(z24) 27(z27) 28(z28) 29(z29) 30(z30) 32(z32) 34(z34) 35(z35) 36(z36) 37(z37) 38(z38) 39(z39) 40(z40) 41(z41) 42(z42) 43(z43) 44(z44) 45(z45) 46(z46) 47(z47) 48(z48) 49(z49) 55(z55) 56(z56) 57(z57) 58(z58) 59(z59) 61(z61) 62(z62) 63(z63)
@@ -31,9 +31,9 @@
 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -
 0 0 0 0 1 1 1 0 0 0 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 0 0 -
 0 0 1 1 1 1 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 1 0 0 1 0 -
-;;; WARNING: Computation interrupted by timeout (300s)
+;;; WARNING: Computation interrupted by timeout (60s)
 ;;; Results are INCOMPLETE - only partial solutions found
-;;; Generated on: 2025-07-16 18:11:49
+;;; Generated on: 2025-07-16 23:18:15
 ;;; Input file: 74181.020.matrix
-;;; Computation time: 300.703404 seconds
-;;; Hypotheses generated: 10377
+;;; Computation time: 61.320964 seconds
+;;; Hypotheses generated: 4741

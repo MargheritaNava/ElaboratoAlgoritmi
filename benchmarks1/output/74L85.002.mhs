@@ -1,0 +1,29 @@
+;;; Measurements info:
+;;; ------------------------
+;;; |  param_name  |  uof  |
+;;; ------------------------
+;;; | elapsed_time |   s   |
+;;; |  cpu_usage   |   %   |
+;;; |  mem_usage   |   Mb  |
+;;; ------------------------
+;;; Measurements data
+;;; {'calculate_mhs': {'elapsed_time': {'min': 0.009007453918457031, 'mean': 0.009007453918457031, 'max': 0.009007453918457031, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 2.6414820875240562e-05, 'max': 0.01, 'count': 341}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
+;;; GlobalNumCellsEq1: 38
+;;; MaxNumCellsEq1PerRow: 13
+;;; MeanNumCellsEq1PerRow: 9.5
+;;; Input matrix shape (N,M): (4,33)
+;;; Total MHS found: 17
+;;; Cardinality (min,max): (1,2)
+;;; Number of generated hypotesis per level: [(1,16),(2,88),(3,112),(4,125),(5,0),(6,0),(7,0)]
+;;; Interrupted: False
+;;; |M'|: 16
+;;; M'  1(z1) 2(z2) 4(z4) 5(z5) 9(z9) 10(z10) 11(z11) 12(z12) 17(z17) 18(z18) 21(z21) 22(z22) 24(z24) 25(z25) 32(z32) 33(z33)
+;;; Map 1(z1) 2(z2) 3(o1) 4(z4) 5(z5) 6(o2) 7(o3) 8(o4) 9(z9) 10(z10) 11(z11) 12(z12) 13(o5) 14(o6) 15(o7) 16(o8) 17(z17) 18(z18) 19(o9) 20(o10) 21(z21) 22(z22) 23(o11) 24(z24) 25(z25) 26(o12) 27(o13) 28(o14) 29(o15) 30(o16) 31(o17) 32(z32) 33(z33)
+1 1 0 1 1 1 1 1 1 1 0 0 1 1 1 1 -
+1 0 1 0 1 1 0 0 1 0 0 1 1 0 1 0 -
+0 1 1 0 1 1 0 0 1 0 1 0 1 0 1 1 -
+1 1 1 0 1 1 0 0 1 0 0 0 1 0 1 0 -
+;;; Generated on: 2025-07-17 00:17:33
+;;; Input file: 74L85.002.matrix
+;;; Computation time: 0.009007 seconds
+;;; Hypotheses generated: 341

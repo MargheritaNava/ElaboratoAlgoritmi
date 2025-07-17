@@ -7,7 +7,7 @@
 ;;; |  mem_usage   |   Mb  |
 ;;; ------------------------
 ;;; Measurements data
-;;; {'calculate_mhs': {'elapsed_time': {'min': 300.93072295188904, 'mean': 300.93072295188904, 'max': 300.93072295188904, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.024026405026098926, 'max': 0.01, 'count': 12525}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
+;;; {'calculate_mhs': {'elapsed_time': {'min': 61.141329526901245, 'mean': 61.141329526901245, 'max': 61.141329526901245, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.008018535019921474, 'max': 0.01, 'count': 7625}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
 ;;; GlobalNumCellsEq1: 44
 ;;; MaxNumCellsEq1PerRow: 19
 ;;; MeanNumCellsEq1PerRow: 8.8
@@ -24,9 +24,9 @@
 0 1 0 1 1 1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1 1 0 1 0 0 0 -
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 -
 1 0 1 0 0 0 1 1 1 0 0 0 1 1 0 0 0 1 1 1 1 0 0 0 0 1 0 1 0 0 -
-;;; WARNING: Computation interrupted by timeout (300s)
+;;; WARNING: Computation interrupted by timeout (60s)
 ;;; Results are INCOMPLETE - only partial solutions found
-;;; Generated on: 2025-07-16 18:42:13
+;;; Generated on: 2025-07-16 23:24:27
 ;;; Input file: 74181.026.matrix
-;;; Computation time: 300.930723 seconds
-;;; Hypotheses generated: 12525
+;;; Computation time: 61.141330 seconds
+;;; Hypotheses generated: 7625
