@@ -37,7 +37,7 @@ class BatchPerformanceAnalyzer:
         # Assicurati che la directory esista
         os.makedirs(output_dir, exist_ok=True)
     
-    def analyze_batch_results(self, results_summary: List[Dict]) -> Tuple[str, str, str]:
+    def analyze_batch_results(self, results_summary: List[Dict]) -> Tuple[str, str]:
         """
         Analizza i risultati di un batch di calcoli MHS
         
@@ -61,7 +61,7 @@ class BatchPerformanceAnalyzer:
         self._analyze_performance_critically(valid_results)
         
         # Genera grafici
-        plots_dir = self._generate_analysis_plots(valid_results)
+        # plots_dir = self._generate_analysis_plots(valid_results)
         
         # Analizza complessità teorica
         self._analyze_theoretical_complexity(valid_results)
@@ -69,7 +69,7 @@ class BatchPerformanceAnalyzer:
         # Salva report
         json_file, csv_file = self._save_performance_reports(valid_results)
         
-        return json_file, csv_file, plots_dir
+        return json_file, csv_file
     
     def _analyze_performance_critically(self, results: List[Dict]):
         """
@@ -252,71 +252,73 @@ class BatchPerformanceAnalyzer:
                 cols.append(0)
         return rows, cols
     
-    def _generate_analysis_plots(self, results: List[Dict]) -> str:
-        """Genera grafici di analisi"""
-        print(f"\nGENERAZIONE GRAFICI ANALITICI")
-        print("-" * 60)
+    # def _generate_analysis_plots(self, results: List[Dict]) -> str:
+    #     """Genera grafici di analisi"""
+    #     print(f"\nGENERAZIONE GRAFICI ANALITICI")
+    #     print("-" * 60)
         
-        times = [r['computation_time'] for r in results]
-        mhs_counts = [r['mhs_count'] for r in results]
-        hypotheses = [r.get('hypotheses_generated', 0) for r in results]
-        matrix_sizes = self._extract_matrix_sizes(results)
-        rows, cols = self._extract_rows_and_cols(results)
-        matrix_sizes_opt = self._extract_matrix_sizes_optimized(results)
-        rows_opt, cols_opt = self._extract_rows_and_cols_optimized(results)
-        ones, ones_opt = [], []
-        file_sizes = [r.get('file_size_mb', 0) for r in results]
+    #     times = [r['computation_time'] for r in results]
+    #     mhs_counts = [r['mhs_count'] for r in results]
+    #     hypotheses = [r.get('hypotheses_generated', 0) for r in results]
+    #     matrix_sizes = self._extract_matrix_sizes(results)
+    #     rows, cols = self._extract_rows_and_cols(results)
+    #     matrix_sizes_opt = self._extract_matrix_sizes_optimized(results)
+    #     rows_opt, cols_opt = self._extract_rows_and_cols_optimized(results)
+    #     ones, ones_opt = [], []
+    #     file_sizes = [r.get('file_size_mb', 0) for r in results]
         
-        try:
-            fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    #     try:
+    #         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
             
-            # Grafico 1: Distribuzione tempi
-            ax1.hist(times, bins=20, alpha=0.7, color='blue', edgecolor='black')
-            ax1.axvline(np.mean(times), color='red', linestyle='--', label=f'Media: {np.mean(times):.3f}s')
-            ax1.axvline(np.median(times), color='green', linestyle='--', label=f'Mediana: {np.median(times):.3f}s')
-            ax1.set_xlabel('Tempo di calcolo (s)')
-            ax1.set_ylabel('Frequenza')
-            ax1.set_title('Distribuzione Tempi di Calcolo')
-            ax1.legend()
-            ax1.grid(True, alpha=0.3)
+    #         # Grafico 1: Distribuzione tempi
+    #         ax1.hist(times, bins=20, alpha=0.7, color='blue', edgecolor='black')
+    #         ax1.axvline(np.mean(times), color='red', linestyle='--', label=f'Media: {np.mean(times):.3f}s')
+    #         ax1.axvline(np.median(times), color='green', linestyle='--', label=f'Mediana: {np.median(times):.3f}s')
+    #         ax1.set_xlabel('Tempo di calcolo (s)')
+    #         ax1.set_ylabel('Frequenza')
+    #         ax1.set_title('Distribuzione Tempi di Calcolo')
+    #         ax1.legend()
+    #         ax1.grid(True, alpha=0.3)
             
-            # Grafico 2: Scatter dimensione vs tempo
-            if matrix_sizes:
-                ax2.scatter(matrix_sizes, times, alpha=0.6, color='orange')
-                ax2.set_xlabel('Dimensione matrice (righe × colonne)')
-                ax2.set_ylabel('Tempo di calcolo (s)')
-                ax2.set_title('Relazione Dimensione-Tempo')
-                ax2.grid(True, alpha=0.3)
+    #         # Grafico 2: Scatter dimensione vs tempo
+    #         if matrix_sizes:
+    #             ax2.scatter(matrix_sizes, times, alpha=0.6, color='orange')
+    #             ax2.set_xlabel('Dimensione matrice (righe × colonne)')
+    #             ax2.set_ylabel('Tempo di calcolo (s)')
+    #             ax2.set_title('Relazione Dimensione-Tempo')
+    #             ax2.grid(True, alpha=0.3)
             
-            # Grafico 3: MHS trovati vs tempo
-            ax3.scatter(mhs_counts, times, alpha=0.6, color='green')
-            ax3.set_xlabel('Numero MHS trovati')
-            ax3.set_ylabel('Tempo di calcolo (s)')
-            ax3.set_title('Relazione MHS-Tempo')
-            ax3.grid(True, alpha=0.3)
+    #         # Grafico 3: MHS trovati vs tempo
+    #         ax3.scatter(mhs_counts, times, alpha=0.6, color='green')
+    #         ax3.set_xlabel('Numero MHS trovati')
+    #         ax3.set_ylabel('Tempo di calcolo (s)')
+    #         ax3.set_title('Relazione MHS-Tempo')
+    #         ax3.grid(True, alpha=0.3)
             
-            # Grafico 4: Distribuzione ipotesi generate
-            ax4.hist(hypotheses, bins=20, alpha=0.7, color='purple', edgecolor='black')
-            ax4.axvline(np.mean(hypotheses), color='red', linestyle='--', label=f'Media: {np.mean(hypotheses):.0f}')
-            ax4.set_xlabel('Ipotesi generate')
-            ax4.set_ylabel('Frequenza')
-            ax4.set_title('Distribuzione Complessità Computazionale')
-            ax4.legend()
-            ax4.grid(True, alpha=0.3)
+    #         # Grafico 4: Distribuzione ipotesi generate
+    #         ax4.hist(hypotheses, bins=20, alpha=0.7, color='purple', edgecolor='black')
+    #         ax4.axvline(np.mean(hypotheses), color='red', linestyle='--', label=f'Media: {np.mean(hypotheses):.0f}')
+    #         ax4.set_xlabel('Ipotesi generate')
+    #         ax4.set_ylabel('Frequenza')
+    #         ax4.set_title('Distribuzione Complessità Computazionale')
+    #         ax4.legend()
+    #         ax4.grid(True, alpha=0.3)
             
-            plt.tight_layout()
+    #         plt.tight_layout()
             
-            # Salva grafici
-            plot_path = os.path.join(self.output_dir, 'performance_analysis.png')
-            plt.savefig(plot_path, dpi=300, bbox_inches='tight')
-            print(f"Grafici salvati in: {plot_path}")
-            plt.close()
+    #         # Salva grafici
+    #         plot_path = os.path.join(self.output_dir, 'performance_analysis.png')
+    #         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+    #         print(f"Grafici salvati in: {plot_path}")
+    #         plt.close()
             
-            return plot_path
-            
-        except Exception as e:
-            print(f"Errore nella generazione dei grafici: {e}")
-            return None
+    #         return plot_path
+        
+    #     except KeyboardInterrupt:
+    #         raise
+    #     except Exception as e:
+    #         print(f"Errore nella generazione dei grafici: {e}")
+    #         return None
     
     def _analyze_theoretical_complexity(self, results: List[Dict]):
         """Analisi della complessità teorica (Big O)"""
@@ -438,6 +440,8 @@ class BatchPerformanceAnalyzer:
             print(f"Grafici complessità salvati in: {complexity_plot_path}")
             plt.close()
             
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nella generazione dei grafici di complessità: {e}")
     
@@ -492,6 +496,8 @@ class BatchPerformanceAnalyzer:
             
             return json_path, csv_path
             
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nel salvataggio dei report: {e}")
             return None, None
