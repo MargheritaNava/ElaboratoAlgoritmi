@@ -445,7 +445,8 @@ class PermutationPatternAnalyzer:
             plt.close()
             
             return output_file
-            
+        except KeyboardInterrupt:
+            raise    
         except Exception as e:
             print(f"Errore nella generazione del grafico pattern variation: {e}")
             return None
@@ -527,7 +528,9 @@ class PermutationPatternAnalyzer:
             plt.close()
             
             return output_file
-            
+        
+        except KeyboardInterrupt:
+            raise    
         except Exception as e:
             print(f"Errore nella generazione del grafico stabilità: {e}")
             return None
@@ -607,7 +610,8 @@ class PermutationPatternAnalyzer:
             plt.close()
             
             return output_file
-            
+        except KeyboardInterrupt:
+            raise    
         except Exception as e:
             print(f"Errore nella generazione del grafico outlier: {e}")
             return None

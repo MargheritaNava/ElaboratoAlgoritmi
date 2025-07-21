@@ -63,7 +63,9 @@ def setup_project():
         
         from mhs_comparator import MHSComparator
         print("mhs_comparator importato correttamente")
-        
+
+    except KeyboardInterrupt:
+        raise 
     except ImportError as e:
         print(f"Errore di importazione: {e}")
         return False

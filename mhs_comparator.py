@@ -76,6 +76,8 @@ class MHSComparator:
             
             return mhs_list
             
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"✗ Errore nel caricamento di {mhs_file}: {e}")
             return []
@@ -111,6 +113,8 @@ class MHSComparator:
                     elif not line.startswith(';;;'):
                         break
         
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nel parsing di {matrix_file}: {e}")
         

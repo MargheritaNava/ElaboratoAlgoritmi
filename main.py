@@ -158,15 +158,14 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
     
     results_summary = []
     total_start_time = time.time()
-    
-    for i, matrix_file in enumerate(matrix_files, 1):
-        print(f"\n[{i}/{len(matrix_files)}] Elaborazione: {os.path.basename(matrix_file)}")
-        
-        try:
+    try:
+        for i, matrix_file in enumerate(matrix_files, 1):
+            print(f"\n[{i}/{len(matrix_files)}] Elaborazione: {os.path.basename(matrix_file)}")
+
             # Calcola MHS con timeout
             base_name = os.path.splitext(os.path.basename(matrix_file))[0]
             output_file = os.path.join(output_dir, f"{base_name}.mhs")
-            
+                
             start_time = time.time()
             calculator = MHSCalculator(matrix_file, timeout_seconds=timeout, max_file_size_mb=max_size)
             mhs_list = calculator.run(output_file)
@@ -189,26 +188,36 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
             }
             results_summary.append(result)
             
-        except Exception as e:
-            print(f"Errore: {e}")
-            results_summary.append({
-                'file': os.path.basename(matrix_file),
-                'error': str(e)
-            })
-    
+    except KeyboardInterrupt:
+        print("\n--- Interruzione da tastiera intercettata! ---")
+        print("Salvataggio dei dati in corso...")
+        time.sleep(3)
+        save_compito2(output_dir, logger, should_finalize, matrix_files, results_summary, total_start_time)
+        sys.exit(0)
+    except Exception as e:
+        print(f"Errore: {e}")
+        results_summary.append({
+            'file': os.path.basename(matrix_file),
+            'error': str(e)
+        })
+            
+    save_compito2(output_dir, logger, should_finalize, matrix_files, results_summary, total_start_time)
+    return True
+
+def save_compito2(output_dir, logger, should_finalize, matrix_files, results_summary, total_start_time, interrupted: bool = False):
     total_time = time.time() - total_start_time
-    
-    # Stampa riassunto
+            
+            # Stampa riassunto
     print(f"\nRIASSUNTO SPERIMENTAZIONE")
     print("="*80)
     print(f"{'File':<20} {'Matrice':<10} {'Ridotta':<10} {'MHS':<6} {'Tempo(s)':<8} {'Ipotesi':<8} {'Status':<10}")
     print("-" * 80)
-    
+            
     timeouts = 0
     size_limits = 0
     errors = 0
     successes = 0
-    
+            
     for result in results_summary:
         if 'error' not in result:
             status = "OK"
@@ -220,18 +229,18 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
                 size_limits += 1
             else:
                 successes += 1
-                
+                        
             print(f"{result['file']:<20} "
-                  f"{result['matrix_size']:<10} "
-                  f"{result['reduced_size']:<10} "
-                  f"{result['mhs_count']:<6} "
-                  f"{result['computation_time']:<8.3f} "
-                  f"{result['hypotheses_generated']:<8} "
-                  f"{status:<10}")
+                        f"{result['matrix_size']:<10} "
+                        f"{result['reduced_size']:<10} "
+                        f"{result['mhs_count']:<6} "
+                        f"{result['computation_time']:<8.3f} "
+                        f"{result['hypotheses_generated']:<8} "
+                        f"{status:<10}")
         else:
             print(f"{result['file']:<20} ERROR: {result['error']}")
             errors += 1
-    
+            
     print("-" * 80)
     print(f"STATISTICHE TOTALI:")
     print(f"   Successi: {successes}/{len(matrix_files)}")
@@ -245,23 +254,29 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
     
     # Usa il nuovo analizzatore batch unificato
     batch_analyzer = BatchPerformanceAnalyzer(output_dir)
-    json_file, csv_file, plots_dir = batch_analyzer.analyze_batch_results(results_summary)
-    
+    json_file, csv_file = batch_analyzer.analyze_batch_results(results_summary)
+            
     print(f"\nCompito 2 completato con valutazione critica!")
     print(f"   • Risultati MHS: {output_dir}")
-    if plots_dir:
-        print(f"   • Analisi prestazioni: {plots_dir}")
+            # if plots_dir:
+            #     print(f"   • Analisi prestazioni: {plots_dir}")
     if json_file:
         print(f"   • Report JSON: {json_file}")
     if csv_file:
         print(f"   • Report CSV: {csv_file}")
     
-    # Finalizza log
-    logger.success("Compito 2 completato con successo")
+    if not interrupted:
+            # Finalizza log
+        logger.success("Compito 2 completato con successo")
+
+    else:
+        logger.success("Compito 2 interrotto manualmente, risultati parziali salvati")
+       
+            
     logger.info(f"Risultati MHS: {output_dir}")
     logger.info(f"Report JSON: {json_file}")
     logger.info(f"Report CSV: {csv_file}")
-    
+
     if should_finalize:
         log_file = logger.finalize(True)
         print(f"Log salvato in: {log_file}")
@@ -301,15 +316,66 @@ def compito_3_permutazioni(input_file: str, num_permutations: int = 5, timeout: 
     perm_dir = f"permutations_{base_name}"
     analysis_dir = os.path.abspath(os.path.join("results", "analysis"))  # Cartella analysis dentro results
 
-    # Genera permutazioni
-    print(f"Generazione di {num_permutations} permutazioni...")
-    permutator = MatrixPermutator(input_file)
+    try:
+        # Genera permutazioni
+        print(f"Generazione di {num_permutations} permutazioni...")
+        permutator = MatrixPermutator(input_file)
+        
+        if not permutator.load_matrix():
+            return False
+        
+        permutator.generate_permutation_files(perm_dir, num_permutations)
     
-    if not permutator.load_matrix():
-        return False
+    except KeyboardInterrupt:
+        print("\n--- Interruzione da tastiera intercettata! ---")
+        print("Salvataggio dei dati in corso...")
+        time.sleep(3)
     
-    permutator.generate_permutation_files(perm_dir, num_permutations)
-    
+        print(f"\nConfronto risultati delle permutazioni (timeout: {timeout}s)...")
+        pattern = os.path.join(perm_dir, "*.matrix")
+        matrix_files = glob.glob(pattern)
+        
+        if matrix_files:
+            
+            print(f"Avvio analisi enhanced con il comparatore integrato...")
+            
+            os.makedirs(analysis_dir, exist_ok=True)
+            
+            logger.section("ANALISI ENHANCED")
+            relative_analysis_dir = os.path.relpath(analysis_dir, os.getcwd())
+            logger.info(f"Directory di analisi: {relative_analysis_dir}")
+            
+            comparator = MHSComparator(enable_performance_monitoring=True)
+            
+            absolute_matrix_files = [os.path.abspath(f) for f in matrix_files]
+            logger.info(f"File da analizzare: {len(absolute_matrix_files)}")
+            
+            comparator.run_enhanced_comparison_experiment(absolute_matrix_files, timeout)
+            
+        else:
+            error_msg = f"Nessun file di permutazione trovato in: {perm_dir}"
+            print(error_msg)
+            logger.error(error_msg)
+            if should_finalize:
+                logger.finalize(False)
+            return False
+        
+        print(f"Compito 3 completato.\n\n")
+        
+        comparator.print_analysis_files_summary()
+        
+        # Finalizza log
+        total_time = time.time() - compito3_start_time
+        logger.success("Compito 3 completato con successo")
+        logger.info(f"Tempo totale esecuzione: {total_time:.2f}s")
+        logger.info(f"Permutazioni elaborate: {len(matrix_files)}")
+        
+        if should_finalize:
+            log_file = logger.finalize(True)
+
+        return True
+
+
     # Confronta i risultati con timeout
     print(f"\nConfronto risultati delle permutazioni (timeout: {timeout}s)...")
     pattern = os.path.join(perm_dir, "*.matrix")
@@ -336,7 +402,6 @@ def compito_3_permutazioni(input_file: str, num_permutations: int = 5, timeout: 
         
         # Esegui analisi senza cambiare directory - i file saranno salvati nelle sottocartelle
         comparator.run_enhanced_comparison_experiment(absolute_matrix_files, timeout)
-        
         
     else:
         error_msg = f"Nessun file di permutazione trovato in: {perm_dir}"
@@ -410,7 +475,7 @@ def run_complete_experiment(timeout: int = 300, max_size: int = 50):
             
             # Compito 3
             logger.section("COMPITO 3: PERMUTAZIONI E CONFRONTI")
-            compito_3_permutazioni(test_file, 3, timeout=timeout, max_size=max_size, logger=logger)
+            compito_3_permutazioni(test_file, 20, timeout=timeout, max_size=max_size, logger=logger)
     
     print(f"\nESPERIMENTO COMPLETO TERMINATO")
     print("="*60)
@@ -450,8 +515,8 @@ Esempi d'uso:
                        help='Esegue l\'esperimento completo (tutti i compiti)')
     parser.add_argument('--output', '-o', metavar='DIR', default='results',
                        help='Directory di output (default: results)')
-    parser.add_argument('--num-permutations', type=int, default=5,
-                       help='Numero di permutazioni per Compito 3 (default: 10)')
+    parser.add_argument('--num-permutations', type=int, default=20,
+                       help='Numero di permutazioni per Compito 3 (default: 20)')
     
     # Nuove opzioni per timeout e limiti
     parser.add_argument('--timeout', type=int, default=300,

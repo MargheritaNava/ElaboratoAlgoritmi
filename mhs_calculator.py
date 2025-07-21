@@ -149,6 +149,11 @@ class MHSCalculator:
             print(f"Matrice caricata: {self.n_rows} righe × {self.n_cols} colonne")
             return True
             
+        except KeyboardInterrupt:
+            self.interrupted = True
+            self.statistics['end_time'] = time.time()
+            self.statistics['total_time'] = self.statistics['end_time'] - self.statistics['start_time']
+            raise
         except FileSizeError as e:
             print(f"{e}")
             self.statistics['interrupted_by_size'] = True
@@ -368,7 +373,9 @@ class MHSCalculator:
                                 # Rimuovi soluzioni non minimali
                                 solutions = [s for s in solutions if not hypothesis.issubset(s)]
                                 solutions.append(hypothesis)
-                                print(f"MHS trovato (cardinalità {len(hypothesis)}): {sorted(hypothesis)}")
+
+                                #! print da rimuovere
+                                # print(f"MHS trovato (cardinalità {len(hypothesis)}): {sorted(hypothesis)}")
                                 continue
                         
                         # Genera successori se non è una soluzione
@@ -395,6 +402,11 @@ class MHSCalculator:
                 print(f"Calcolo completato: {len(solutions)} MHS trovati")
                 return solutions
                 
+        except KeyboardInterrupt:
+            self.interrupted = True
+            self.statistics['end_time'] = time.time()
+            self.statistics['total_time'] = self.statistics['end_time'] - self.statistics['start_time']
+            raise
         except TimeoutError as e:
             self.interrupted = True
             self.statistics['interrupted_by_timeout'] = True
@@ -586,6 +598,8 @@ class MHSCalculator:
             else:
                 print(f"Risultati salvati in: {output_file}")
             
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nel salvataggio: {e}")
     
@@ -649,7 +663,9 @@ class MHSCalculator:
             self.print_statistics()
             
             return mhs_list
-        
+
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore critico durante l'esecuzione: {e}")
             if output_file:

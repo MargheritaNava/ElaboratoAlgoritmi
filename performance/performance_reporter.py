@@ -474,7 +474,8 @@ class PerformanceReporter:
             plt.close()
             
             return report_file
-            
+        except KeyboardInterrupt:
+            raise    
         except Exception as e:
             print(f"Errore nella generazione grafici: {e}")
             return None

@@ -73,6 +73,8 @@ class MatrixPermutator:
             print(f"Matrice caricata: {self.n_rows} righe, {self.n_cols} colonne")
             return True
             
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nel caricamento: {e}")
             return False
@@ -187,7 +189,9 @@ class MatrixPermutator:
                     f.write(' '.join(map(str, row)) + ' -\n')
             
             print(f"Matrice permutata salvata in: {output_file}")
-            
+        
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nel salvataggio: {e}")
     

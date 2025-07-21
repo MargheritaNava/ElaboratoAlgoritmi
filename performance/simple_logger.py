@@ -75,6 +75,8 @@ Log File: {os.path.basename(self.log_file)}
         try:
             with open(self.log_file, 'a', encoding='utf-8') as f:
                 f.write(log_entry)
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore scrittura log: {e}")
     

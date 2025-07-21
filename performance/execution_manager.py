@@ -105,7 +105,8 @@ class ExecutionManager:
             self.register_file(target_path, file_type, description)
             
             return target_path
-            
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nello spostamento del file {source_path}: {e}")
             return None
@@ -146,7 +147,9 @@ class ExecutionManager:
             self.register_file(target_path, file_type, description)
             
             return target_path
-            
+
+        except KeyboardInterrupt:
+            raise
         except Exception as e:
             print(f"Errore nella copia del file {source_path}: {e}")
             return None
@@ -176,7 +179,8 @@ class ExecutionManager:
             
             self.register_file(summary_path, "json", "Riepilogo completo dell'esecuzione")
             return summary_path
-            
+        except KeyboardInterrupt:
+            raise   
         except Exception as e:
             print(f"Errore nella generazione del riepilogo: {e}")
             return None
@@ -243,5 +247,7 @@ class ExecutionManager:
                     if not os.listdir(dir_path):  # Directory vuota
                         os.rmdir(dir_path)
                         print(f"Rimossa directory vuota: {dir_path}")
+                except KeyboardInterrupt:
+                    raise
                 except OSError:
                     pass  # Directory non vuota o altri errori
