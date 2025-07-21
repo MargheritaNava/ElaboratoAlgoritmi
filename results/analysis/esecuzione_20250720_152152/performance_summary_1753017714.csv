@@ -1,0 +1,21 @@
+File,Tempo_Esecuzione_s,Picco_Memoria_MB,CPU_Media_%,MHS_Trovati,Ipotesi_Generate,Livelli_Esplorati,Max_Livello_Size,Complessità_Temporale,Complessità_Spaziale
+74L85.000_perm_02.matrix,0.005,62.5,0.0,7,30,2,22,O(n) - linear,O(n) - linear
+74L85.000_perm_08.matrix,0.013,62.5,0.0,7,30,2,22,O(n) - linear,O(n) - linear
+74L85.000_perm_09.matrix,0.004,62.5,0.0,7,33,2,25,O(n) - linear,O(n) - linear
+74L85.000_perm_07.matrix,0.004,62.5,0.0,7,33,2,25,O(n) - linear,O(n) - linear
+74L85.000_perm_05.matrix,0.005,62.5,1019.1,7,24,2,16,O(n) - linear,O(n) - linear
+74L85.000_perm_04.matrix,0.005,62.5,1744.9,7,34,2,26,O(n) - linear,O(n) - linear
+74L85.000_perm_12.matrix,0.003,62.5,0.0,7,33,2,25,O(n) - linear,O(n) - linear
+74L85.000_perm_10.matrix,0.005,62.5,0.0,7,27,2,19,O(n) - linear,O(n) - linear
+74L85.000_perm_19.matrix,0.004,62.5,0.0,7,30,2,22,O(n) - linear,O(n) - linear
+74L85.000_perm_15.matrix,0.009,62.5,0.0,7,28,2,20,O(n) - linear,O(n) - linear
+74L85.000_perm_14.matrix,0.007,62.5,0.0,7,29,2,21,O(n) - linear,O(n) - linear
+74L85.000_perm_13.matrix,0.008,62.7,0.0,7,34,2,26,O(n) - linear,O(n) - linear
+74L85.000_perm_18.matrix,0.004,62.7,0.0,7,23,2,15,O(n) - linear,O(n) - linear
+74L85.000_perm_03.matrix,0.009,62.7,0.0,7,32,2,24,O(n) - linear,O(n) - linear
+74L85.000_perm_00.matrix,0.009,62.7,0.0,7,34,2,26,O(n) - linear,O(n) - linear
+74L85.000_perm_16.matrix,0.005,62.7,0.0,7,33,2,25,O(n) - linear,O(n) - linear
+74L85.000_perm_06.matrix,0.008,62.7,0.0,7,29,2,21,O(n) - linear,O(n) - linear
+74L85.000_perm_11.matrix,0.004,62.7,0.0,7,34,2,26,O(n) - linear,O(n) - linear
+74L85.000_perm_17.matrix,0.006,62.7,0.0,7,29,2,21,O(n) - linear,O(n) - linear
+74L85.000_perm_01.matrix,0.004,62.7,0.0,7,34,2,26,O(n) - linear,O(n) - linear
