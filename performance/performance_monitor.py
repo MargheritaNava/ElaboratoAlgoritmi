@@ -99,7 +99,8 @@ class PerformanceMonitor:
                 self.memory_samples.append(memory_mb)
                 
                 time.sleep(self.sample_interval)
-                
+            except KeyboardInterrupt:
+                raise    
             except Exception as e:
                 print(f"Errore nel monitoraggio: {e}")
                 break
