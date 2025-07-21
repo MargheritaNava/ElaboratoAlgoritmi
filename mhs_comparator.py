@@ -161,7 +161,7 @@ class MHSComparator:
             'reduced_size': (calculator.n_rows, calculator.n_cols_reduced),
             'timeout_occurred': calculator.statistics.get('interrupted_by_timeout', False),
             'size_limit_hit': calculator.statistics.get('interrupted_by_size', False),
-            # Nuove metriche di complessità
+            'hypotheses_by_level': calculator.statistics.get('hypotheses_by_level', {}),
             'time_complexity_estimate': self._estimate_time_complexity(calculator.statistics),
             'space_complexity_estimate': self._estimate_space_complexity(calculator.statistics)
         }
