@@ -1,0 +1,29 @@
+;;; Measurements info:
+;;; ------------------------
+;;; |  param_name  |  uof  |
+;;; ------------------------
+;;; | elapsed_time |   s   |
+;;; |  cpu_usage   |   %   |
+;;; |  mem_usage   |   Mb  |
+;;; ------------------------
+;;; Measurements data
+;;; {'calculate_mhs': {'elapsed_time': {'min': 0.18788671493530273, 'mean': 0.18788671493530273, 'max': 0.18788671493530273, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.00015312690703773654, 'max': 0.01, 'count': 1227}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
+;;; GlobalNumCellsEq1: 68
+;;; MaxNumCellsEq1PerRow: 20
+;;; MeanNumCellsEq1PerRow: 17.0
+;;; Input matrix shape (N,M): (4,66)
+;;; Total MHS found: 42
+;;; Cardinality (min,max): (1,2)
+;;; Number of generated hypotesis per level: [(1,26),(2,241),(3,441),(4,519),(5,0),(6,0),(7,0)]
+;;; Interrupted: False
+;;; |M'|: 26
+;;; M'  3(z3) 5(z5) 6(z6) 7(z7) 8(z8) 9(z9) 12(z12) 15(z15) 19(z19) 24(z24) 27(z27) 28(z28) 29(z29) 30(z30) 32(z32) 34(z34) 35(z35) 36(z36) 41(z41) 42(z42) 43(z43) 44(z44) 45(z45) 55(z55) 58(z58) 62(z62)
+;;; Map 1(o1) 2(o2) 3(z3) 4(o3) 5(z5) 6(z6) 7(z7) 8(z8) 9(z9) 10(o4) 11(o5) 12(z12) 13(o6) 14(o7) 15(z15) 16(o8) 17(o9) 18(o10) 19(z19) 20(o11) 21(o12) 22(o13) 23(o14) 24(z24) 25(o15) 26(o16) 27(z27) 28(z28) 29(z29) 30(z30) 31(o17) 32(z32) 33(o18) 34(z34) 35(z35) 36(z36) 37(o19) 38(o20) 39(o21) 40(o22) 41(z41) 42(z42) 43(z43) 44(z44) 45(z45) 46(o23) 47(o24) 48(o25) 49(o26) 50(o27) 51(o28) 52(o29) 53(o30) 54(o31) 55(z55) 56(o32) 57(o33) 58(z58) 59(o34) 60(o35) 61(o36) 62(z62) 63(o37) 64(o38) 65(o39) 66(o40)
+0 1 1 1 1 0 0 1 1 1 1 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 -
+0 0 0 1 1 0 1 0 0 0 1 0 1 0 0 0 1 1 1 1 1 1 1 1 1 1 -
+0 0 0 1 1 0 1 1 0 0 1 0 1 1 0 0 1 0 1 1 1 1 1 1 1 1 -
+1 0 0 1 1 1 1 1 0 0 1 1 1 1 0 0 0 0 1 1 1 1 1 0 1 1 -
+;;; Generated on: 2025-07-21 12:49:38
+;;; Input file: 74181.005.matrix
+;;; Computation time: 0.187887 seconds
+;;; Hypotheses generated: 1227
