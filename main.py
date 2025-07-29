@@ -445,7 +445,7 @@ def run_complete_experiment(timeout: int = 300, max_size: int = 50):
     print("="*60)
     
     # Controlla se esistono i benchmark
-    benchmark_dirs = ["benchmarks1", "benchmarks2"]
+    benchmark_dirs = ["benchmarks","benchmarks_test"]
     available_benchmarks = [d for d in benchmark_dirs if os.path.exists(d)]
     
     if not available_benchmarks:
@@ -496,7 +496,7 @@ def main():
 Esempi d'uso:
   python main.py --all                           # Esegue tutto l'esperimento
   python main.py --compito1 file.matrix         # Solo calcolo MHS
-  python main.py --compito2 benchmarks1/        # Solo sperimentazione
+  python main.py --compito2 benchmarks/        # Solo sperimentazione
   python main.py --compito3 file.matrix         # Solo permutazioni
   python main.py --all --timeout 600 --max-size 100  # Con timeout e limiti personalizzati
         """

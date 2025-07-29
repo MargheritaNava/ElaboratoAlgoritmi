@@ -36,7 +36,7 @@ def setup_project():
     print("Tutti i file principali sono presenti")
     
     # Verifica directory benchmark
-    benchmark_dirs = ['benchmarks1', 'benchmarks2']
+    benchmark_dirs = ['benchmarks', 'benchmarks_test']
     found_benchmarks = []
     
     for dir_name in benchmark_dirs:
@@ -76,13 +76,13 @@ def setup_project():
     print("   python main.py --test")
     print()
     print("2. Calcolo MHS singolo file:")
-    print("   python main.py --compito1 benchmarks1/74181.000.matrix")
+    print("   python main.py --compito1 benchmarks/74181.000.matrix")
     print()
     print("3. Sperimentazione completa:")
-    print("   python main.py --compito2 benchmarks1/")
+    print("   python main.py --compito2 benchmarks/")
     print()
     print("4. Permutazioni e confronti:")
-    print("   python main.py --compito3 benchmarks1/74181.000.matrix")
+    print("   python main.py --compito3 benchmarks/74181.000.matrix")
     print()
     print("5. Esperimento completo:")
     print("   python main.py --all")

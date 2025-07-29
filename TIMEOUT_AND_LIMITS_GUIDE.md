@@ -43,7 +43,7 @@ python main.py --all --timeout 600 --max-size 100 --max-files 20
 
 # Singoli compiti con limiti
 python main.py --compito1 file.matrix --timeout 300 --max-size 50
-python main.py --compito2 benchmarks1/ --timeout 180 --max-files 5
+python main.py --compito2 benchmarks/ --timeout 180 --max-files 5
 ```
 
 ## Codici di Uscita

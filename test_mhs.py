@@ -93,7 +93,7 @@ def main():
     test_simple_example()
     
     # Test con file di benchmark
-    benchmark_dir = "benchmarks1"
+    benchmark_dir = "benchmarks"
     if os.path.exists(benchmark_dir):
         # Prova con alcuni file di benchmark
         test_files = [
