@@ -1,0 +1,437 @@
+PS C:\Users\jenni\Desktop\progetto_agosto\ElaboratoAlgoritmi> python main.py --compito2 benchmarks_test/
+MHS Calculator - Configurazione:
+Timeout: 300s
+Limite dimensione: 50MB
+Max file batch: 50
+--------------------------------------------------
+
+COMPITO 2: Sperimentazione sui benchmark
+==================================================
+Utilizzando cartella output: results
+Trovati 10 file di benchmark
+Elaborazione dei primi 10 file...
+Timeout per file: 300s
+Limite dimensione: 50MB
+
+[1/10] Elaborazione: 74182.045.matrix
+Caricamento file (0.00MB): 74182.045.matrix
+Matrice caricata: 8 righe × 20 colonne
+Matrice ridotta: 8 righe, 16 colonne
+Colonne vuote rimosse: [1, 9, 11, 16]
+Inizio calcolo MHS...
+Livello 1: 16 ipotesi
+Livello 2: 120 ipotesi
+Livello 3: 560 ipotesi
+Livello 4: 1820 ipotesi
+Livello 5: 4368 ipotesi
+Livello 6: 8008 ipotesi
+Livello 7: 11250 ipotesi
+Livello 8: 11835 ipotesi
+Calcolo completato: 70 MHS trovati
+Risultati salvati in: results\74182.045.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 29.717 secondi
+Ipotesi generate: 37977
+MHS trovati: 70
+Livello massimo raggiunto: 8
+Matrice originale: 8 , 20
+Matrice ridotta: 8 , 16
+
+Ipotesi per livello:
+  Livello 1: 16 ipotesi
+  Livello 2: 120 ipotesi
+  Livello 3: 560 ipotesi
+  Livello 4: 1820 ipotesi
+  Livello 5: 4368 ipotesi
+  Livello 6: 8008 ipotesi
+  Livello 7: 11250 ipotesi
+  Livello 8: 11835 ipotesi
+==================================================
+
+[2/10] Elaborazione: 74182.049.matrix
+Caricamento file (0.00MB): 74182.049.matrix
+Matrice caricata: 7 righe × 20 colonne
+Matrice ridotta: 7 righe, 18 colonne
+Colonne vuote rimosse: [1, 14]
+Inizio calcolo MHS...
+Livello 1: 18 ipotesi
+Livello 2: 153 ipotesi
+Livello 3: 816 ipotesi
+Livello 4: 3060 ipotesi
+Livello 5: 8568 ipotesi
+Livello 6: 18564 ipotesi
+Livello 7: 30874 ipotesi
+Calcolo completato: 150 MHS trovati
+Risultati salvati in: results\74182.049.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 286.571 secondi
+Ipotesi generate: 62053
+MHS trovati: 150
+Livello massimo raggiunto: 7
+Matrice originale: 7 , 20
+Matrice ridotta: 7 , 18
+
+Ipotesi per livello:
+  Livello 1: 18 ipotesi
+  Livello 2: 153 ipotesi
+  Livello 3: 816 ipotesi
+  Livello 4: 3060 ipotesi
+  Livello 5: 8568 ipotesi
+  Livello 6: 18564 ipotesi
+  Livello 7: 30874 ipotesi
+==================================================
+
+[3/10] Elaborazione: 74283.000.matrix
+Caricamento file (0.00MB): 74283.000.matrix
+Matrice caricata: 5 righe × 37 colonne
+Matrice ridotta: 5 righe, 28 colonne
+Colonne vuote rimosse: [1, 3, 13, 15, 16, 17, 18, 24, 30]
+Inizio calcolo MHS...
+Livello 1: 28 ipotesi
+Livello 2: 306 ipotesi
+Livello 3: 1255 ipotesi
+Livello 4: 4221 ipotesi
+Livello 5: 11719 ipotesi
+Calcolo completato: 34 MHS trovati
+Risultati salvati in: results\74283.000.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 47.733 secondi
+Ipotesi generate: 17529
+MHS trovati: 34
+Livello massimo raggiunto: 5
+Matrice originale: 5 , 37
+Matrice ridotta: 5 , 28
+
+Ipotesi per livello:
+  Livello 1: 28 ipotesi
+  Livello 2: 306 ipotesi
+  Livello 3: 1255 ipotesi
+  Livello 4: 4221 ipotesi
+  Livello 5: 11719 ipotesi
+==================================================
+
+[4/10] Elaborazione: 74L85.010.matrix
+Caricamento file (0.00MB): 74L85.010.matrix
+Matrice caricata: 5 righe × 33 colonne
+Matrice ridotta: 5 righe, 25 colonne
+Colonne vuote rimosse: [4, 6, 9, 12, 14, 15, 16, 20]
+Inizio calcolo MHS...
+Livello 1: 25 ipotesi
+Livello 2: 300 ipotesi
+Livello 3: 2289 ipotesi
+Livello 4: 10863 ipotesi
+Livello 5: 36282 ipotesi
+Operazione interrotta per timeout (300s)
+Calcolo interrotto - risultati parziali disponibili
+Risultati parziali salvati in: results\74L85.010.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+CALCOLO INTERROTTO PER TIMEOUT
+Timeout impostato: 300s
+Tempo di calcolo: 302.156 secondi
+Ipotesi generate: 32477
+MHS trovati: 0
+Livello massimo raggiunto: 5
+Matrice originale: 5 , 33
+Matrice ridotta: 5 , 25
+
+Ipotesi per livello:
+  Livello 1: 25 ipotesi
+  Livello 2: 300 ipotesi
+  Livello 3: 2289 ipotesi
+  Livello 4: 10863 ipotesi
+  Livello 5: 36282 ipotesi
+==================================================
+
+[5/10] Elaborazione: 74L85.012.matrix
+Caricamento file (0.00MB): 74L85.012.matrix
+Matrice caricata: 5 righe × 33 colonne
+Matrice ridotta: 5 righe, 22 colonne
+Colonne vuote rimosse: [3, 4, 6, 7, 8, 23, 24, 26, 27, 28, 29]
+Inizio calcolo MHS...
+Livello 1: 22 ipotesi
+Livello 2: 231 ipotesi
+Livello 3: 1526 ipotesi
+Livello 4: 6258 ipotesi
+Livello 5: 20699 ipotesi
+Calcolo completato: 22 MHS trovati
+Risultati salvati in: results\74L85.012.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 232.262 secondi
+Ipotesi generate: 28736
+MHS trovati: 22
+Livello massimo raggiunto: 5
+Matrice originale: 5 , 33
+Matrice ridotta: 5 , 22
+
+Ipotesi per livello:
+  Livello 1: 22 ipotesi
+  Livello 2: 231 ipotesi
+  Livello 3: 1526 ipotesi
+  Livello 4: 6258 ipotesi
+  Livello 5: 20699 ipotesi
+==================================================
+
+[6/10] Elaborazione: 74L85.014.matrix
+Caricamento file (0.00MB): 74L85.014.matrix
+Matrice caricata: 6 righe × 33 colonne
+Matrice ridotta: 6 righe, 21 colonne
+Colonne vuote rimosse: [2, 5, 7, 8, 10, 11, 12, 13, 15, 16, 18, 20]
+Inizio calcolo MHS...
+Livello 1: 21 ipotesi
+Livello 2: 210 ipotesi
+Livello 3: 1260 ipotesi
+Livello 4: 3848 ipotesi
+Livello 5: 7506 ipotesi
+Livello 6: 13937 ipotesi
+Calcolo completato: 181 MHS trovati
+Risultati salvati in: results\74L85.014.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 45.886 secondi
+Ipotesi generate: 26782
+MHS trovati: 181
+Livello massimo raggiunto: 6
+Matrice originale: 6 , 33
+Matrice ridotta: 6 , 21
+
+Ipotesi per livello:
+  Livello 1: 21 ipotesi
+  Livello 2: 210 ipotesi
+  Livello 3: 1260 ipotesi
+  Livello 4: 3848 ipotesi
+  Livello 5: 7506 ipotesi
+  Livello 6: 13937 ipotesi
+==================================================
+
+[7/10] Elaborazione: 74L85.015.matrix
+Caricamento file (0.00MB): 74L85.015.matrix
+Matrice caricata: 6 righe × 33 colonne
+Matrice ridotta: 6 righe, 20 colonne
+Colonne vuote rimosse: [3, 6, 7, 13, 14, 15, 19, 23, 26, 27, 28, 29, 30]
+Inizio calcolo MHS...
+Livello 1: 20 ipotesi
+Livello 2: 190 ipotesi
+Livello 3: 1131 ipotesi
+Livello 4: 3800 ipotesi
+Livello 5: 8566 ipotesi
+Livello 6: 15730 ipotesi
+Calcolo completato: 110 MHS trovati
+Risultati salvati in: results\74L85.015.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 54.236 secondi
+Ipotesi generate: 29437
+MHS trovati: 110
+Livello massimo raggiunto: 6
+Matrice originale: 6 , 33
+Matrice ridotta: 6 , 20
+
+Ipotesi per livello:
+  Livello 1: 20 ipotesi
+  Livello 2: 190 ipotesi
+  Livello 3: 1131 ipotesi
+  Livello 4: 3800 ipotesi
+  Livello 5: 8566 ipotesi
+  Livello 6: 15730 ipotesi
+==================================================
+
+[8/10] Elaborazione: 74L85.017.matrix
+Caricamento file (0.00MB): 74L85.017.matrix
+Matrice caricata: 5 righe × 33 colonne
+Matrice ridotta: 5 righe, 20 colonne
+Colonne vuote rimosse: [3, 4, 5, 8, 15, 16, 20, 23, 24, 25, 28, 29, 30]
+Inizio calcolo MHS...
+Livello 1: 20 ipotesi
+Livello 2: 190 ipotesi
+Livello 3: 1125 ipotesi
+Livello 4: 4030 ipotesi
+Livello 5: 11753 ipotesi
+Calcolo completato: 21 MHS trovati
+Risultati salvati in: results\74L85.017.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 50.400 secondi
+Ipotesi generate: 17118
+MHS trovati: 21
+Livello massimo raggiunto: 5
+Matrice originale: 5 , 33
+Matrice ridotta: 5 , 20
+
+Ipotesi per livello:
+  Livello 1: 20 ipotesi
+  Livello 2: 190 ipotesi
+  Livello 3: 1125 ipotesi
+  Livello 4: 4030 ipotesi
+  Livello 5: 11753 ipotesi
+==================================================
+
+[9/10] Elaborazione: c1355.005.matrix
+Caricamento file (0.01MB): c1355.005.matrix
+Matrice caricata: 2 righe × 547 colonne
+Matrice ridotta: 2 righe, 86 colonne
+Colonne vuote rimosse: [1, 2, 3, 4, 7, 8, 9, 13, 14, 15, 16, 17, 18, 19, 22, 23, 24, 26, 27, 28, 29, 30, 31, 35, 36, 37, 38, 39, 40, 41, 43, 47, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 63, 65, 66, 67, 68, 69, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 87, 88, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 110, 111, 112, 113, 114, 115, 118, 119, 122, 123, 124, 125, 126, 127, 132, 133, 134, 135, 136, 137, 140, 141, 142, 144, 145, 146, 147, 148, 150, 151, 152, 153, 155, 157, 158, 159, 160, 161, 162, 163, 166, 167, 170, 171, 172, 173, 174, 175, 180, 181, 182, 183, 184, 185, 188, 189, 190, 192, 194, 195, 196, 199, 200, 201, 203, 204, 205, 206, 207, 208, 209, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 227, 228, 229, 230, 231, 232, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 252, 253, 254, 255, 256, 257, 258, 259, 260, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 284, 285, 286, 287, 288, 289, 290, 291, 292, 294, 295, 296, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 545, 546, 547]
+Inizio calcolo MHS...
+Livello 1: 86 ipotesi
+Livello 2: 3645 ipotesi
+Calcolo completato: 1645 MHS trovati
+Risultati salvati in: results\c1355.005.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 33.751 secondi
+Ipotesi generate: 3731
+MHS trovati: 1645
+Livello massimo raggiunto: 2
+Matrice originale: 2 , 547
+Matrice ridotta: 2 , 86
+
+Ipotesi per livello:
+  Livello 1: 86 ipotesi
+  Livello 2: 3645 ipotesi
+==================================================
+
+[10/10] Elaborazione: c1355.008.matrix
+Caricamento file (0.01MB): c1355.008.matrix
+Matrice caricata: 2 righe × 547 colonne
+Matrice ridotta: 2 righe, 86 colonne
+Colonne vuote rimosse: [1, 2, 3, 5, 6, 7, 8, 10, 11, 14, 15, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 48, 50, 51, 52, 53, 54, 56, 58, 62, 63, 64, 65, 66, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 103, 106, 107, 110, 111, 116, 117, 120, 121, 122, 123, 124, 125, 128, 129, 130, 131, 132, 133, 134, 135, 138, 140, 143, 145, 146, 147, 148, 149, 150, 151, 152, 154, 155, 156, 158, 159, 163, 164, 165, 167, 168, 169, 170, 171, 172, 173, 176, 177, 178, 179, 180, 181, 182, 183, 185, 186, 188, 191, 193, 194, 195, 197, 198, 199, 200, 202, 203, 204, 206, 207, 209, 210, 211, 212, 213, 214, 215, 217, 218, 219, 220, 221, 224, 225, 226, 227, 228, 230, 231, 233, 234, 235, 236, 237, 238, 239, 240, 242, 243, 244, 245, 248, 249, 250, 251, 252, 253, 254, 255, 258, 259, 261, 262, 263, 264, 266, 267, 268, 269, 270, 271, 272, 274, 275, 276, 277, 280, 281, 282, 283, 284, 285, 286, 287, 289, 290, 291, 293, 294, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547]
+Inizio calcolo MHS...
+Livello 1: 86 ipotesi
+Livello 2: 3645 ipotesi
+Calcolo completato: 1643 MHS trovati
+Risultati salvati in: results\c1355.008.mhs
+
+==================================================
+STATISTICHE ESECUZIONE
+==================================================
+Tempo di calcolo: 80.084 secondi
+Ipotesi generate: 3731
+MHS trovati: 1643
+Livello massimo raggiunto: 2
+Matrice originale: 2 , 547
+Matrice ridotta: 2 , 86
+
+Ipotesi per livello:
+  Livello 1: 86 ipotesi
+  Livello 2: 3645 ipotesi
+==================================================
+
+RIASSUNTO SPERIMENTAZIONE
+================================================================================
+File                 Matrice    Ridotta    MHS    Tempo(s) Ipotesi  Status
+--------------------------------------------------------------------------------
+74182.045.matrix     8×20       8×16       70     29.733   37977    OK
+74182.049.matrix     7×20       7×18       150    286.591  62053    OK
+74283.000.matrix     5×37       5×28       34     47.744   17529    OK
+74L85.010.matrix     5×33       5×25       0      302.176  32477    TIMEOUT
+74L85.012.matrix     5×33       5×22       22     232.274  28736    OK
+74L85.014.matrix     6×33       6×21       181    45.904   26782    OK
+74L85.015.matrix     6×33       6×20       110    54.256   29437    OK        
+74L85.017.matrix     5×33       5×20       21     50.416   17118    OK
+c1355.005.matrix     2×547      2×86       1645   33.763   3731     OK
+c1355.008.matrix     2×547      2×86       1643   80.105   3731     OK
+--------------------------------------------------------------------------------
+STATISTICHE TOTALI:
+   Successi: 9/10
+   Timeout: 1
+   File troppo grandi: 0
+   Errori: 0
+   Tempo totale: 1163.0s
+
+AVVIO VALUTAZIONE CRITICA DELLE PRESTAZIONI...
+
+AVVIO ANALISI BATCH UNIFICATA
+==================================================
+
+VALUTAZIONE CRITICA DELLE PRESTAZIONI
+================================================================================
+
+ANALISI PRESTAZIONI TEMPORALI
+------------------------------------------------------------
+Tempo medio di calcolo: 116.296s
+Tempo mediano: 52.336s
+Deviazione standard: 105.100s
+Tempo minimo: 29.733s
+Tempo massimo: 302.176s
+Range temporale: 272.443s
+
+File elaborati VELOCEMENTE (0):
+
+File elaborati LENTAMENTE (3):
+   • 74182.049.matrix: 286.591s (150 MHS)
+   • 74L85.010.matrix: 302.176s (0 MHS)
+   • 74L85.012.matrix: 232.274s (22 MHS)
+
+ANALISI PRESTAZIONI SPAZIALI
+------------------------------------------------------------
+Ipotesi medie generate: 25957
+Ipotesi mediane: 27759
+Deviazione standard ipotesi: 16271
+Minime ipotesi: 3731
+Massime ipotesi: 62053
+Uso memoria stimato medio: 25.96MB
+Uso memoria stimato massimo: 62.05MB
+
+ANALISI CORRELAZIONI
+------------------------------------------------------------
+Correlazione dimensione-tempo: -0.309
+   → Correlazione negativa (inaspettata)
+Correlazione MHS-tempo: -0.296
+   → Numero MHS non correla direttamente con tempo
+
+CLASSIFICAZIONE PER COMPLESSITÀ
+------------------------------------------------------------
+SEMPLICI VELOCI: 1 file
+COMPLESSI VELOCI: 1 file
+COMPLESSI LENTI: 2 file
+
+ANALISI COMPLESSITÀ TEORICA (BIG O)
+================================================================================
+
+COMPLESSITÀ TEMPORALE
+----------------------------------------
+Correlazione O(n): -0.309
+Correlazione O(n²): -0.290
+Correlazione O(2^n): -0.315
+Complessità temporale stimata: O(n²)
+
+COMPLESSITÀ SPAZIALE
+----------------------------------------
+Correlazione spaziale O(n): -0.704
+Correlazione spaziale O(n²): -0.688
+Memoria stimata media: 25.96MB
+Memoria stimata massima: 62.05MB
+Grafici complessità salvati in: results\algorithmic_complexity.png
+
+SALVATAGGIO REPORT PRESTAZIONI
+------------------------------------------------------------
+Report CSV salvato in: results\performance_detailed.csv
+Report JSON salvato in: results\performance_statistics.json
+
+Compito 2 completato con valutazione critica!
+   • Risultati MHS: results
+   • Report JSON: results\performance_statistics.json
+   • Report CSV: results\performance_detailed.csv
+Log salvato in: results\logs\compito_2_20250729_122713.log

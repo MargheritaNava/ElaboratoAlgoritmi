@@ -26,6 +26,33 @@ Sperimentazione sistematica sui file di benchmark forniti con:
 - **Statistiche su interruzioni** e file saltati per dimensioni eccessive
 - Statistiche dettagliate su ipotesi generate per livello
 - Confronto delle prestazioni su matrici di diverse dimensioni
+- **Selezione intelligente basata su entropia** per campionamento rappresentativo
+
+#### Selezione Intelligente delle Matrici (Nuovo)
+Il Compito 2 ora include un **sistema avanzato di selezione delle matrici** basato sull'entropia di Shannon:
+
+**Caratteristiche principali:**
+- **Analisi automatica dell'entropia** di tutte le matrici nella directory di benchmark
+- **Selezione diversificata** di 30 matrici rappresentative del range completo di complessità
+- **Distribuzione uniforme** lungo lo spettro di entropia per garantire copertura ottimale
+- **Report dettagliati** con statistiche complete su ogni matrice analizzata
+
+**Vantaggi tecnici:**
+- **Efficienza computazionale**: Concentra il calcolo su matrici rappresentative invece di elaborare sequenzialmente tutti i file
+- **Copertura scientifica completa**: Garantisce test su matrici con diversi livelli di "casualità" strutturale
+- **Tempo di esecuzione ottimizzato**: Da potenziali ore a 20-60 minuti per dataset completi
+- **Risultati più significativi**: Focus su casi di studio diversificati invece di pattern ripetitivi
+
+**Implementazione dell'entropia:**
+- Utilizza l'**entropia di Shannon** (H = -Σ p_i * log₂(p_i)) per quantificare la "casualità" di ogni matrice
+- Range tipico: 0.0 (matrice perfettamente ordinata) → 1.0 (distribuzione casuale perfetta)
+- **Implementazione nativa** senza dipendenze esterne per massima compatibilità
+
+**Output generato:**
+- **File JSON** (`results/entropy_analysis.json`) con analisi completa
+- **File CSV** (`results/entropy_analysis.csv`) per analisi in Excel/Python
+- **Report console** con tabella riassuntiva delle matrici selezionate
+- **Integrazione trasparente** con il flusso esistente del Compito 2
 
 ### Compito 3: Permutazioni e Validazione
 Generazione di permutazioni delle matrici e confronto dei risultati per:
@@ -106,6 +133,8 @@ Elaborato2023/
 ├── mhs_calculator.py       # Implementazione algoritmo MHS
 ├── matrix_permutator.py    # Generatore di permutazioni
 ├── mhs_comparator.py       # Comparatore di risultati
+├── entropy_selector.py     # Selettore intelligente matrici basato su entropia
+├── compito2_entropy_integration.py # Integrazione entropy selector nel Compito 2
 ├── test_mhs.py            # Script di test
 ├── requirements.txt        # Dipendenze Python
 ├── README.md              # Questa documentazione
@@ -123,7 +152,9 @@ Elaborato2023/
 └── results/               # Directory risultati (generata automaticamente)
     ├── analysis/          # Analisi e report dettagliati
     │   └── esecuzione_*   # Directory univoca per ogni esecuzione Task 3
-    └── logs/              # File di log per ogni esecuzione
+    ├── logs/              # File di log per ogni esecuzione
+    ├── entropy_analysis.json # Report completo analisi entropia
+    └── entropy_analysis.csv  # Dati entropia in formato tabellare
 ```
 
 ## Installazione e Configurazione
@@ -158,7 +189,26 @@ python main.py --compito1 benchmarks1/74181.000.matrix
 
 #### Compito 2: Sperimentazione sui benchmark
 ```bash
+# Sperimentazione standard (tutti i file)
 python main.py --compito2 benchmarks1/
+
+# Sperimentazione con selezione entropia (15 matrici - DEFAULT)
+python main.py --compito2 benchmarks1/ --max-files 15
+
+# Sperimentazione con selezione entropia (30 matrici)
+python main.py --compito2 benchmarks1/ --max-files 30
+
+# Solo analisi entropia senza calcolo MHS (15 matrici - DEFAULT)
+python entropy_selector.py
+
+# Solo analisi entropia con numero personalizzato
+python entropy_selector.py --num-matrices 30
+
+# Solo analisi entropia con directory e numero personalizzati
+python entropy_selector.py benchmarks/ --num-matrices 25
+
+# Forma abbreviata del parametro
+python entropy_selector.py benchmarks/ -n 20
 ```
 
 #### Compito 3: Permutazioni e confronti
@@ -246,6 +296,13 @@ benchmarks2/
 - **Potatura dello spazio**: Evita esplorazione di superseti di soluzioni note
 - **Limite di cardinalità**: Esplorazione limitata a max{|N|, |M'|}
 - **Generazione efficiente**: Solo successori sinistri per evitare duplicati
+
+### Selezione Intelligente delle Matrici (Nuovo)
+- **Analisi entropia automatica**: Calcolo entropia di Shannon per tutte le matrici
+- **Selezione diversificata**: Distribuzione uniforme lungo il range di complessità
+- **Ottimizzazione dei tempi**: Da ore a 20-60 minuti per dataset completi
+- **Report scientifici**: Output JSON/CSV con statistiche dettagliate
+- **Implementazione nativa**: Nessuna dipendenza esterna aggiuntiva
 
 ### Statistiche e Monitoraggio
 - Tempo di calcolo dettagliato

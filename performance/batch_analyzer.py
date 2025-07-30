@@ -461,7 +461,9 @@ class BatchPerformanceAnalyzer:
                 writer.writeheader()
                 
                 for r in results:
-                    writer.writerow(r)
+                    # Filtra solo i campi che sono nei fieldnames per evitare errori
+                    filtered_r = {k: v for k, v in r.items() if k in fieldnames}
+                    writer.writerow(filtered_r)
             
             # Prepara dati per JSON
             json_path = os.path.join(self.output_dir, 'performance_statistics.json')

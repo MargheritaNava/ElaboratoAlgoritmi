@@ -1,0 +1,33 @@
+;;; Measurements info:
+;;; ------------------------
+;;; |  param_name  |  uof  |
+;;; ------------------------
+;;; | elapsed_time |   s   |
+;;; |  cpu_usage   |   %   |
+;;; |  mem_usage   |   Mb  |
+;;; ------------------------
+;;; Measurements data
+;;; {'calculate_mhs': {'elapsed_time': {'min': 301.5249652862549, 'mean': 301.5249652862549, 'max': 301.5249652862549, 'count': 1}}, 'reduce_matrix': {'elapsed_time': {'min': 0.001, 'mean': 0.001, 'max': 0.001, 'count': 1}}, 'generate_hypotheses': {'elapsed_time': {'min': 0.0001, 'mean': 0.025316957622691427, 'max': 0.01, 'count': 11910}}, '__GLOBAL': {'cpu_usage': {'min': 0.0, 'mean': 0.0, 'max': 0.0, 'count': 1}, 'mem_usage': {'min': 50.0, 'mean': 50.0, 'max': 50.0, 'count': 1}}}
+;;; GlobalNumCellsEq1: 74
+;;; MaxNumCellsEq1PerRow: 19
+;;; MeanNumCellsEq1PerRow: 12.3
+;;; Input matrix shape (N,M): (6,65)
+;;; Total MHS found: 0
+;;; Cardinality (min,max): (0,0)
+;;; Number of generated hypotesis per level: [(1,39),(2,741),(3,9130),(4,78932),(5,0),(6,0),(7,0)]
+;;; Interrupted: True
+;;; |M'|: 39
+;;; M'  1(z1) 2(z2) 4(z4) 5(z5) 6(z6) 7(z7) 10(z10) 11(z11) 12(z12) 16(z16) 17(z17) 18(z18) 19(z19) 20(z20) 21(z21) 22(z22) 25(z25) 26(z26) 27(z27) 28(z28) 30(z30) 31(z31) 32(z32) 33(z33) 36(z36) 38(z38) 39(z39) 40(z40) 41(z41) 43(z43) 52(z52) 53(z53) 54(z54) 55(z55) 56(z56) 57(z57) 60(z60) 61(z61) 64(z64)
+;;; Map 1(z1) 2(z2) 3(o1) 4(z4) 5(z5) 6(z6) 7(z7) 8(o2) 9(o3) 10(z10) 11(z11) 12(z12) 13(o4) 14(o5) 15(o6) 16(z16) 17(z17) 18(z18) 19(z19) 20(z20) 21(z21) 22(z22) 23(o7) 24(o8) 25(z25) 26(z26) 27(z27) 28(z28) 29(o9) 30(z30) 31(z31) 32(z32) 33(z33) 34(o10) 35(o11) 36(z36) 37(o12) 38(z38) 39(z39) 40(z40) 41(z41) 42(o13) 43(z43) 44(o14) 45(o15) 46(o16) 47(o17) 48(o18) 49(o19) 50(o20) 51(o21) 52(z52) 53(z53) 54(z54) 55(z55) 56(z56) 57(z57) 58(o22) 59(o23) 60(z60) 61(z61) 62(o24) 63(o25) 64(z64) 65(o26)
+0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 1 1 1 0 1 1 0 0 0 1 0 1 1 -
+1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 1 0 1 0 -
+0 1 0 1 1 1 0 1 1 1 1 0 0 0 1 1 0 1 0 1 1 0 1 0 0 1 0 0 0 0 0 0 0 0 1 0 1 0 0 -
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 -
+0 1 1 0 1 1 0 1 1 0 0 1 1 1 0 0 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 1 1 0 0 1 0 0 -
+1 1 1 0 1 1 1 1 1 0 0 1 1 1 0 0 0 1 1 1 0 1 0 0 0 0 0 1 0 1 0 0 0 0 0 1 0 1 0 -
+;;; WARNING: Computation interrupted by timeout (300s)
+;;; Results are INCOMPLETE - only partial solutions found
+;;; Generated on: 2025-07-29 21:45:33
+;;; Input file: 74181.013.matrix
+;;; Computation time: 301.524965 seconds
+;;; Hypotheses generated: 11910

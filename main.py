@@ -21,6 +21,7 @@ from matrix_permutator import MatrixPermutator
 from mhs_comparator import MHSComparator
 from performance.batch_analyzer import BatchPerformanceAnalyzer
 from performance.simple_logger import create_task_logger, create_complete_execution_logger
+from entropy_selector import select_matrices_by_entropy
 import numpy as np
 import matplotlib.pyplot as plt
 import json
@@ -141,18 +142,38 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
     else:
         print(f"Utilizzando cartella output: {output_dir}")
     
-    # Trova tutti i file .matrix
-    matrix_files = glob.glob(os.path.join(benchmark_dir, "*.matrix"))
+    # Trova tutti i file .matrix con selezione intelligente
+    print(f"\n🧠 SELEZIONE INTELLIGENTE BASATA SU ENTROPIA")
+    print("="*60)
+    print("Analizzando le matrici per selezionare un campione rappresentativo...")
+    
+    try:
+        # Usa il selettore di entropia per scegliere le matrici più diverse
+        matrix_files = select_matrices_by_entropy(benchmark_dir, max_files)
+        logger.info(f"Selezione per entropia completata: {len(matrix_files)} matrici")
+        entropy_selection = True
+        
+    except Exception as e:
+        print(f"Errore nella selezione per entropia: {e}")
+        print("Fallback alla selezione standard...")
+        logger.warning(f"Fallback selezione standard: {e}")
+        
+        # Fallback: selezione standard
+        matrix_files = glob.glob(os.path.join(benchmark_dir, "*.matrix"))
+        if matrix_files:
+            matrix_files = sorted(matrix_files)[:max_files]
+        entropy_selection = False
     
     if not matrix_files:
         print(f"Nessun file .matrix trovato in: {benchmark_dir}")
         return False
     
-    print(f"Trovati {len(matrix_files)} file di benchmark")
-    
-    # Limita il numero di file per evitare tempi eccessivi
-    matrix_files = sorted(matrix_files)[:max_files]
-    print(f"Elaborazione dei primi {len(matrix_files)} file...")
+    print(f"\n📊 ELABORAZIONE {len(matrix_files)} MATRICI SELEZIONATE")
+    if entropy_selection:
+        print("✨ Matrici selezionate per diversità di entropia")
+    else:
+        print("📋 Matrici selezionate in ordine alfabetico")
+    print(f"Elaborazione dei file selezionati...")
     print(f"Timeout per file: {timeout}s")
     print(f"Limite dimensione: {max_size}MB")
     
@@ -184,7 +205,8 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
                 'timeout': calculator.statistics.get('interrupted_by_timeout', False),
                 'size_limit': calculator.statistics.get('interrupted_by_size', False),
                 'file_size_mb': os.path.getsize(matrix_file) / (1024*1024),
-                'ones_count': int(np.count_nonzero(calculator.matrix))  # Conteggio degli elementi non nulli della matrice
+                'ones_count': int(np.count_nonzero(calculator.matrix)),  # Conteggio degli elementi non nulli della matrice
+                'entropy_selected': entropy_selection  # Flag per indicare il metodo di selezione
             }
             results_summary.append(result)
             
@@ -523,8 +545,8 @@ Esempi d'uso:
                        help='Timeout in secondi per file (default: 300)')
     parser.add_argument('--max-size', type=int, default=50,
                        help='Dimensione massima file in MB (default: 50)')
-    parser.add_argument('--max-files', type=int, default=50,
-                       help='Numero massimo di file da elaborare nei benchmark (default: 10)')
+    parser.add_argument('--max-files', type=int, default=30,
+                       help='Numero massimo di file da elaborare nei benchmark (default: 30)')
     
     args = parser.parse_args()
     
