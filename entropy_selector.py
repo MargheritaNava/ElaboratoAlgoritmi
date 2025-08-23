@@ -37,7 +37,7 @@ class MatrixEntropySelector:
             with open(matrix_file, 'r') as f:
                 lines = f.readlines()
             
-            # Parse della matrice (assumendo formato standard)
+            # Parse della matrice 
             matrix_data = []
             for line in lines:
                 line = line.strip()
@@ -364,16 +364,7 @@ class MatrixEntropySelector:
 
 
 def select_matrices_by_entropy(benchmark_dir: str, target_count: int = 30) -> List[str]:
-    """
-    Funzione di utilità per selezionare matrici basandosi sull'entropia
-    
-    Args:
-        benchmark_dir: Directory contenente i file .matrix
-        target_count: Numero di matrici da selezionare
-        
-    Returns:
-        Lista dei path delle matrici selezionate
-    """
+     
     selector = MatrixEntropySelector(benchmark_dir)
     selector.analyze_all_matrices()
     selected = selector.select_diverse_matrices(target_count)

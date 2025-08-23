@@ -95,7 +95,7 @@ def compito_2_sperimentazione_enhanced(benchmark_dir: str, output_dir: str = Non
     print(f"Timeout per file: {timeout}s")
     print(f"Limite dimensione: {max_size}MB")
     
-    # Il resto della funzione rimane uguale...
+    
     results_summary = []
     total_start_time = time.time()
     

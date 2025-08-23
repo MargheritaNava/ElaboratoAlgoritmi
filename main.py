@@ -143,7 +143,7 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
         print(f"Utilizzando cartella output: {output_dir}")
     
     # Trova tutti i file .matrix con selezione intelligente
-    print(f"\n🧠 SELEZIONE INTELLIGENTE BASATA SU ENTROPIA")
+    print(f"\nSELEZIONE INTELLIGENTE BASATA SU ENTROPIA")
     print("="*60)
     print("Analizzando le matrici per selezionare un campione rappresentativo...")
     
@@ -168,11 +168,11 @@ def compito_2_sperimentazione(benchmark_dir: str, output_dir: str = None, timeou
         print(f"Nessun file .matrix trovato in: {benchmark_dir}")
         return False
     
-    print(f"\n📊 ELABORAZIONE {len(matrix_files)} MATRICI SELEZIONATE")
+    print(f"\nELABORAZIONE {len(matrix_files)} MATRICI SELEZIONATE")
     if entropy_selection:
-        print("✨ Matrici selezionate per diversità di entropia")
+        print("Matrici selezionate per diversità di entropia")
     else:
-        print("📋 Matrici selezionate in ordine alfabetico")
+        print("Matrici selezionate in ordine alfabetico")
     print(f"Elaborazione dei file selezionati...")
     print(f"Timeout per file: {timeout}s")
     print(f"Limite dimensione: {max_size}MB")
@@ -271,7 +271,7 @@ def save_compito2(output_dir, logger, should_finalize, matrix_files, results_sum
     print(f"   Errori: {errors}")
     print(f"   Tempo totale: {total_time:.1f}s")
     
-    # 🆕 AGGIUNTA: VALUTAZIONE CRITICA DELLE PRESTAZIONI
+    # AGGIUNTA: VALUTAZIONE CRITICA DELLE PRESTAZIONI
     print(f"\nAVVIO VALUTAZIONE CRITICA DELLE PRESTAZIONI...")
     
     # Usa il nuovo analizzatore batch unificato
