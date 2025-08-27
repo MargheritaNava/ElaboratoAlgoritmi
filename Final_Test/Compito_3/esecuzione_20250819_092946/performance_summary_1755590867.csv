@@ -1,0 +1,21 @@
+File,Tempo_Esecuzione_s,Picco_Memoria_MB,CPU_Media_%,MHS_Trovati,Ipotesi_Generate,Livelli_Esplorati,Max_Livello_Size,Complessità_Temporale,Complessità_Spaziale
+74182.045_perm_18.matrix,102.612,74.1,99.8,70,37843,8,11790,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_04.matrix,99.059,74.1,100.1,70,37977,8,11835,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_06.matrix,121.784,74.1,100.0,70,37840,8,11774,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_14.matrix,117.967,74.1,99.9,70,37937,8,11820,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_17.matrix,120.538,74.3,99.7,70,37878,8,11792,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_00.matrix,112.255,74.5,99.6,70,37977,8,11835,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_10.matrix,100.703,74.7,99.8,70,37900,8,11826,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_01.matrix,113.288,74.8,99.8,70,37977,8,11835,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_05.matrix,112.460,75.1,99.8,70,37957,8,11830,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_08.matrix,107.620,75.1,99.9,70,37935,8,11816,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_12.matrix,112.177,75.5,99.5,70,37840,8,11790,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_07.matrix,117.687,75.6,99.5,70,37903,8,11810,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_19.matrix,107.846,75.8,99.5,70,37917,8,11825,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_13.matrix,107.689,76.0,99.8,70,37914,8,11799,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_16.matrix,120.531,76.1,99.7,70,37850,8,11778,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_11.matrix,106.895,76.5,99.7,70,37884,8,11802,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_15.matrix,110.980,76.3,99.7,70,37935,8,11830,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_09.matrix,131.455,76.5,99.8,70,37875,8,11800,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_03.matrix,127.982,76.5,99.6,70,37987,8,11840,O(n^k) - polynomial,O(n²) - quadratic
+74182.045_perm_02.matrix,128.584,76.6,99.6,70,37895,8,11804,O(n^k) - polynomial,O(n²) - quadratic

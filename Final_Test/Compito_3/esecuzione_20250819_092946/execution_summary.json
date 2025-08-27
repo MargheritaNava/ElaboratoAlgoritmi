@@ -1,0 +1,58 @@
+{
+  "execution_info": {
+    "execution_id": "esecuzione_20250819_092946",
+    "timestamp": "2025-08-19T10:08:07.880397",
+    "directory": "results/analysis/esecuzione_20250819_092946",
+    "total_files": 6
+  },
+  "files_generated": [
+    {
+      "path": "results/analysis/esecuzione_20250819_092946/advanced_performance_analysis_1755590867.json",
+      "filename": "advanced_performance_analysis_1755590867.json",
+      "type": "json",
+      "description": "Report Completo Analisi Prestazioni",
+      "size_mb": 0.009539604187011719,
+      "relative_path": "advanced_performance_analysis_1755590867.json"
+    },
+    {
+      "path": "results/analysis/esecuzione_20250819_092946/performance_summary_1755590867.csv",
+      "filename": "performance_summary_1755590867.csv",
+      "type": "csv",
+      "description": "Riassunto Prestazioni in Formato Tabellare",
+      "size_mb": 0.002063751220703125,
+      "relative_path": "performance_summary_1755590867.csv"
+    },
+    {
+      "path": "results/analysis/esecuzione_20250819_092946/pattern_variation_analysis_report_1.png",
+      "filename": "pattern_variation_analysis_report_1.png",
+      "type": "png",
+      "description": "Analisi Pattern di Variazione Prestazionale",
+      "size_mb": 0.2691936492919922,
+      "relative_path": "pattern_variation_analysis_report_1.png"
+    },
+    {
+      "path": "results/analysis/esecuzione_20250819_092946/pattern_stability_analysis_report_2.png",
+      "filename": "pattern_stability_analysis_report_2.png",
+      "type": "png",
+      "description": "Analisi Stabilità Algoritmo MHS",
+      "size_mb": 0.40353870391845703,
+      "relative_path": "pattern_stability_analysis_report_2.png"
+    },
+    {
+      "path": "results/analysis/esecuzione_20250819_092946/pattern_outlier_detection_report_3.png",
+      "filename": "pattern_outlier_detection_report_3.png",
+      "type": "png",
+      "description": "Identificazione Outlier Prestazionali",
+      "size_mb": 0.2034435272216797,
+      "relative_path": "pattern_outlier_detection_report_3.png"
+    },
+    {
+      "path": "results/analysis/esecuzione_20250819_092946/permutation_analysis_report_1755590884.png",
+      "filename": "permutation_analysis_report_1755590884.png",
+      "type": "png",
+      "description": "Report Grafico Completo Prestazioni",
+      "size_mb": 0.34729576110839844,
+      "relative_path": "permutation_analysis_report_1755590884.png"
+    }
+  ]
+}
