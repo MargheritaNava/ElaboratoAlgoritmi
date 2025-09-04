@@ -168,37 +168,36 @@ class MHSComparator:
         
         return mhs_list, statistics
     
-    def convert_mhs_to_original_indices(self, mhs_list: List[Set[int]], 
-                                      col_permutation: List[int]) -> List[Set[int]]:
+    
+    def convert_mhs_to_original_indices(
+    self,
+    mhs_list: List[Set[int]],
+    col_permutation: List[int]
+    ) -> List[Set[int]]:
         """
-        Converte i MHS dagli indici permutati agli indici originali
-        
+        Converte i MHS dagli indici permutati agli indici originali.
+
         Args:
             mhs_list: Lista dei MHS con indici permutati
-            col_permutation: Permutazione delle colonne utilizzata
-            
+            col_permutation: Permutazione delle colonne (posizione permutata -> indice originale)
+
         Returns:
             Lista dei MHS con indici originali
         """
         if col_permutation is None:
             return mhs_list
-        
-        # Crea la mappatura inversa
-        inverse_perm = [0] * len(col_permutation)
-        for i, original_idx in enumerate(col_permutation):
-            inverse_perm[original_idx] = i
-        
-        # Converte gli MHS
+
         converted_mhs = []
         for mhs in mhs_list:
             converted_set = set()
             for permuted_idx in mhs:
-                if permuted_idx < len(inverse_perm):
-                    original_idx = inverse_perm[permuted_idx]
+                if permuted_idx < len(col_permutation):
+                    original_idx = col_permutation[permuted_idx]
                     converted_set.add(original_idx)
             converted_mhs.append(converted_set)
-        
+
         return converted_mhs
+
     
     def compare_mhs_sets(self, mhs1: List[Set[int]], mhs2: List[Set[int]]) -> Dict:
         """
@@ -250,50 +249,95 @@ class MHSComparator:
         # Analizza le prestazioni
         self.analyze_performance()
     
+    
+
     def compare_all_results(self):
         """
-        Confronta tutti i risultati tra loro
+        Confronta tutti i risultati tra loro, riportandoli agli indici originali
+        e confrontando le versioni canonicalizzate.
         """
         print("\nCONFRONTO RISULTATI")
-        print("="*40)
-        
+        print("=" * 40)
+
         files = list(self.results.keys())
-        
         if len(files) < 2:
             print("Servono almeno 2 file per il confronto")
             return
-        
+
+        def canonicalize_mhs_list(mhs_list):
+            """Ogni MHS diventa una tupla ordinata, duplicati rimossi"""
+            return set(tuple(sorted(set(mhs))) for mhs in mhs_list)
+
+
+        def invert_permutation(perm):
+            """Restituisce l’inversa di una permutazione"""
+            if perm is None:
+                return None
+            inverse = [0] * len(perm)
+            for i, p in enumerate(perm):
+                inverse[p] = i
+            return inverse
+
+        def remap_to_original(mhs_list, col_permutation, reduced_to_original):
+            """
+            Converte i MHS dagli indici ridotti agli indici originali usando la mappatura delle colonne ridotte
+            e poi applica l'inversa della permutazione.
+            Args:
+                mhs_list: lista di MHS (indici rispetto alla matrice ridotta)
+                col_permutation: inversa della permutazione delle colonne (o None)
+                reduced_to_original: lista che mappa ogni colonna della matrice ridotta all'indice originale
+            """
+            if reduced_to_original is None:
+                return mhs_list
+            # Prima porta ogni indice ridotto all'indice originale
+            mapped = []
+            for mhs in mhs_list:
+                mapped_set = set(reduced_to_original[idx] for idx in mhs if idx < len(reduced_to_original))
+                mapped.append(mapped_set)
+            # Poi, se serve, applica l'inversa della permutazione
+            if col_permutation is not None:
+                mapped2 = []
+                for mhs in mapped:
+                    mapped2.append(set(col_permutation[idx] for idx in mhs if idx < len(col_permutation)))
+                return mapped2
+            return mapped
+
+
+        # Pre-remappa tutti i MHS una volta sola per debug, usando la mappatura delle colonne ridotte e l'inversa della permutazione
+        remapped_results = {}
+        for f in files:
+            perm = self.permutation_info[f].get('col_permutation')
+            inv_perm = invert_permutation(perm) if perm is not None else None
+            # Recupera la mappatura dalle statistiche
+            stats = self.results[f][1]
+            reduced_to_original = stats.get('reduced_to_original')
+            remapped = remap_to_original(self.results[f][0], inv_perm, reduced_to_original)
+            remapped_results[f] = canonicalize_mhs_list(remapped)
+            print(f"{os.path.basename(f)} remapped:", [sorted(list(m)) for m in remapped])
+
         # Confronta tutti contro tutti
         for i, file1 in enumerate(files):
             for j, file2 in enumerate(files[i+1:], i+1):
-                mhs1, _ = self.results[file1]
-                mhs2, _ = self.results[file2]
-                
-                # Converti agli indici originali se necessario
-                perm1 = self.permutation_info[file1]
-                perm2 = self.permutation_info[file2]
-                
-                if perm1['col_permutation'] is not None:
-                    mhs1 = self.convert_mhs_to_original_indices(mhs1, perm1['col_permutation'])
-                
-                if perm2['col_permutation'] is not None:
-                    mhs2 = self.convert_mhs_to_original_indices(mhs2, perm2['col_permutation'])
-                
-                # Confronta
-                comparison = self.compare_mhs_sets(mhs1, mhs2)
-                
+                set1 = set(frozenset(mhs) for mhs in remapped_results[file1])
+                set2 = set(frozenset(mhs) for mhs in remapped_results[file2])
+
+                common = len(set1.intersection(set2))
+                union = len(set1.union(set2))
+                jaccard = common / union if union else 1.0
+
                 print(f"\n{os.path.basename(file1)} vs {os.path.basename(file2)}")
-                print(f"   Identici: {'SI' if comparison['identical'] else 'NO'}")
-                print(f"   MHS File1: {comparison['num_mhs1']}")
-                print(f"   MHS File2: {comparison['num_mhs2']}")
-                print(f"   Comuni: {comparison['common']}")
-                print(f"   Solo in File1: {comparison['only_in_1']}")
-                print(f"   Solo in File2: {comparison['only_in_2']}")
-                print(f"   Similarità Jaccard: {comparison['jaccard_similarity']:.3f}")
-                
-                if not comparison['identical']:
+                print(f"   Identici: {'SI' if set1 == set2 else 'NO'}")
+                print(f"   MHS File1: {len(set1)}")
+                print(f"   MHS File2: {len(set2)}")
+                print(f"   Comuni: {common}")
+                print(f"   Solo in File1: {len(set1 - set2)}")
+                print(f"   Solo in File2: {len(set2 - set1)}")
+                print(f"   Similarità Jaccard: {jaccard:.3f}")
+
+                if set1 != set2:
                     print("ATTENZIONE: I risultati non sono identici!")
-    
+
+                    
     def analyze_performance(self):
         """
         Analizza le prestazioni su diverse permutazioni

@@ -162,30 +162,43 @@ class MHSCalculator:
             print(f"Errore nel caricamento: {e}")
             return False
     
-    def reduce_matrix(self):
+    def reduce_matrix(self, columns_to_keep=None):
         """
-        Riduce la matrice rimuovendo le colonne vuote (tutti 0)
+        Riduce la matrice rimuovendo le colonne vuote (tutti 0) oppure tenendo solo le colonne specificate.
+        Se columns_to_keep è fornito, tiene solo quelle colonne (indici rispetto alla matrice originale).
         """
         if not self.matrix:
             return
-        
-        # Trova colonne vuote
+        if columns_to_keep is not None:
+            # Riduci usando la lista fornita
+            reduced_to_original = list(columns_to_keep)
+            col_idx_map = {orig: i for i, orig in enumerate(reduced_to_original)}
+            self.column_mapping = {orig: i for i, orig in enumerate(reduced_to_original)}
+            self.reverse_mapping = {i: orig for i, orig in enumerate(reduced_to_original)}
+            self.n_cols_reduced = len(reduced_to_original)
+            reduced_matrix = []
+            for i in range(self.n_rows):
+                reduced_row = [self.matrix[i][j] for j in reduced_to_original]
+                reduced_matrix.append(reduced_row)
+            self.matrix = reduced_matrix
+            self.empty_columns = []
+            self.statistics['reduced_to_original'] = reduced_to_original
+            print(f"Matrice ridotta (colonne fisse): {self.n_rows} righe, {self.n_cols_reduced} colonne")
+            return
+        # Altrimenti, riduci normalmente (solo sull'originale!)
         self.empty_columns = []
         for j in range(self.n_cols):
             if all(self.matrix[i][j] == 0 for i in range(self.n_rows)):
                 self.empty_columns.append(j)
-        
-        # Crea mappatura colonne
         reduced_col = 0
+        reduced_to_original = []
         for original_col in range(self.n_cols):
             if original_col not in self.empty_columns:
                 self.column_mapping[original_col] = reduced_col
                 self.reverse_mapping[reduced_col] = original_col
+                reduced_to_original.append(original_col)
                 reduced_col += 1
-        
         self.n_cols_reduced = reduced_col
-        
-        # Crea matrice ridotta
         if self.empty_columns:
             reduced_matrix = []
             for i in range(self.n_rows):
@@ -195,7 +208,7 @@ class MHSCalculator:
                         reduced_row.append(self.matrix[i][j])
                 reduced_matrix.append(reduced_row)
             self.matrix = reduced_matrix
-        
+        self.statistics['reduced_to_original'] = reduced_to_original
         print(f"Matrice ridotta: {self.n_rows} righe, {self.n_cols_reduced} colonne")
         if self.empty_columns:
             print(f"Colonne vuote rimosse: {[c+1 for c in self.empty_columns]}")

@@ -197,92 +197,66 @@ class MatrixPermutator:
     
     def generate_systematic_permutations(self, max_permutations: int = 10) -> List[Tuple[List[int], List[int]]]:
         """
-        Genera permutazioni sistematiche per valutare le prestazioni
-        
+        Genera solo permutazioni delle colonne (righe identità).
         Args:
             max_permutations: Numero massimo di permutazioni da generare
-            
         Returns:
             Lista di tuple (row_permutation, col_permutation)
         """
         permutations = []
-        
-        # 1. Identità (nessuna permutazione)
         identity_rows = list(range(self.n_rows))
         identity_cols = list(range(self.n_cols))
+        # 1. Identità (nessuna permutazione)
         permutations.append((identity_rows, identity_cols))
-        
-        # 2. Permutazione solo righe (casuale)
-        if max_permutations > 1:
-            random_rows = self.generate_random_permutation(self.n_rows)
-            permutations.append((random_rows, identity_cols))
-        
-        # 3. Permutazione solo colonne (casuale)
-        if max_permutations > 2:
-            random_cols = self.generate_random_permutation(self.n_cols)
-            permutations.append((identity_rows, random_cols))
-        
-        # 4. Permutazione sia righe che colonne
-        if max_permutations > 3:
-            random_rows = self.generate_random_permutation(self.n_rows)
-            random_cols = self.generate_random_permutation(self.n_cols)
-            permutations.append((random_rows, random_cols))
-        
-        # 5. Reverse delle righe
-        if max_permutations > 4:
-            reverse_rows = list(reversed(range(self.n_rows)))
-            permutations.append((reverse_rows, identity_cols))
-        
-        # 6. Reverse delle colonne
-        if max_permutations > 5:
-            reverse_cols = list(reversed(range(self.n_cols)))
-            permutations.append((identity_rows, reverse_cols))
-        
-        # 7-10. Permutazioni casuali aggiuntive
+        # 2+. Solo permutazioni colonne (righe identità)
+        seen_cols = {tuple(identity_cols)}
         while len(permutations) < max_permutations:
-            random_rows = self.generate_random_permutation(self.n_rows)
             random_cols = self.generate_random_permutation(self.n_cols)
-            new_perm = (random_rows, random_cols)
-            
-            # Evita duplicati
-            if new_perm not in permutations:
-                permutations.append(new_perm)
-        
+            tcols = tuple(random_cols)
+            if tcols not in seen_cols:
+                permutations.append((identity_rows, random_cols))
+                seen_cols.add(tcols)
         return permutations[:max_permutations]
     
-    def generate_permutation_files(self, output_dir: str, max_permutations: int = 10):
+    def generate_permutation_files(self, output_dir: str, max_permutations: int = 10, columns_to_keep=None):
         """
-        Genera multiple permutazioni e le salva su file
-        
+        Genera multiple permutazioni e le salva su file, riducendo solo sulle colonne specificate se columns_to_keep è fornito.
         Args:
             output_dir: Directory di output
             max_permutations: Numero massimo di permutazioni da generare
+            columns_to_keep: lista di colonne (indici originali) da tenere dopo la permutazione
         """
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        
         base_name = os.path.splitext(os.path.basename(self.matrix_file))[0]
         permutations = self.generate_systematic_permutations(max_permutations)
-        
         print(f"Generazione di {len(permutations)} permutazioni...")
-        
         for i, (row_perm, col_perm) in enumerate(permutations):
             # Genera matrice permutata
             permuted_matrix = self.permute_both(row_perm, col_perm)
-            
+            # Se columns_to_keep è fornito, riduci la matrice permutata sulle stesse colonne dell'originale
+            if columns_to_keep is not None:
+                # Calcola la mappatura delle colonne permutate rispetto all'originale
+                # columns_to_keep sono indici rispetto all'originale
+                # col_perm è la permutazione applicata (posizione permutata -> indice originale)
+                # Dobbiamo trovare, nella matrice permutata, quali colonne corrispondono a quelle da tenere
+                permuted_cols_to_keep = [col_perm.index(orig) for orig in columns_to_keep]
+                # Riduci la matrice permutata
+                reduced_matrix = []
+                for row in permuted_matrix:
+                    reduced_row = [row[j] for j in permuted_cols_to_keep]
+                    reduced_matrix.append(reduced_row)
+                permuted_matrix = reduced_matrix
             # Nome file di output
             output_file = os.path.join(output_dir, f"{base_name}_perm_{i:02d}.matrix")
-            
             # Salva
             self.save_permuted_matrix(permuted_matrix, output_file, row_perm, col_perm)
-            
             # Descrizione della permutazione
             perm_type = []
             if row_perm != list(range(self.n_rows)):
                 perm_type.append("rows")
             if col_perm != list(range(self.n_cols)):
                 perm_type.append("cols")
-            
             if not perm_type:
                 print(f"  Perm {i:02d}: Identity (no permutation)")
             else:

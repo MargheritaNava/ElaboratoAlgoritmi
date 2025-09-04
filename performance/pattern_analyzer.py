@@ -8,7 +8,9 @@ tra diverse permutazioni della stessa matrice MHS.
 """
 
 import os
+import warnings
 import numpy as np
+warnings.filterwarnings("ignore", category=np.RankWarning)
 import matplotlib.pyplot as plt
 from typing import Dict, List, Tuple, Optional
 import statistics
@@ -90,7 +92,14 @@ class PermutationPatternAnalyzer:
         """Calcola statistiche specifiche per i pattern"""
         if not times:
             return {}
-        
+        # Controllo per correlazione robusta
+        def safe_corrcoef(x, y):
+            if len(x) <= 1 or len(set(x)) <= 1 or len(set(y)) <= 1:
+                return float('nan')
+            try:
+                return np.corrcoef(x, y)[0, 1]
+            except Exception:
+                return float('nan')
         return {
             'time_statistics': {
                 'mean': np.mean(times),
@@ -111,8 +120,8 @@ class PermutationPatternAnalyzer:
                 'available': any(m > 0 for m in memory_peaks)
             },
             'correlations': {
-                'time_hypothesis': np.corrcoef(times, hypotheses)[0,1] if len(times) > 1 else 0,
-                'time_memory': np.corrcoef(times, memory_peaks)[0,1] if len(times) > 1 and any(m > 0 for m in memory_peaks) else 0
+                'time_hypothesis': safe_corrcoef(times, hypotheses),
+                'time_memory': safe_corrcoef(times, memory_peaks) if any(m > 0 for m in memory_peaks) else float('nan')
             }
         }
     

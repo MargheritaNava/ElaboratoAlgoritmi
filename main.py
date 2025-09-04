@@ -22,7 +22,9 @@ from mhs_comparator import MHSComparator
 from performance.batch_analyzer import BatchPerformanceAnalyzer
 from performance.simple_logger import create_task_logger, create_complete_execution_logger
 from entropy_selector import select_matrices_by_entropy
+import warnings
 import numpy as np
+warnings.filterwarnings("ignore", category=RuntimeWarning, module="numpy")
 import matplotlib.pyplot as plt
 import json
 import csv
@@ -339,15 +341,19 @@ def compito_3_permutazioni(input_file: str, num_permutations: int = 5, timeout: 
     analysis_dir = os.path.abspath(os.path.join("results", "analysis"))  # Cartella analysis dentro results
 
     try:
-        # Genera permutazioni
+        # Carica la matrice originale e calcola le colonne da tenere
         print(f"Generazione di {num_permutations} permutazioni...")
         permutator = MatrixPermutator(input_file)
-        
         if not permutator.load_matrix():
             return False
-        
-        permutator.generate_permutation_files(perm_dir, num_permutations)
-    
+        # Calcola le colonne non vuote sull'originale
+        from mhs_calculator import MHSCalculator
+        calc = MHSCalculator(input_file)
+        calc.load_matrix()
+        calc.reduce_matrix()
+        columns_to_keep = calc.statistics['reduced_to_original']
+        # Passa columns_to_keep a tutte le permutazioni
+        permutator.generate_permutation_files(perm_dir, num_permutations, columns_to_keep=columns_to_keep)
     except KeyboardInterrupt:
         print("\n--- Interruzione da tastiera intercettata! ---")
         print("Salvataggio dei dati in corso...")
